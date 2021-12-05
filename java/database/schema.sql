@@ -1,6 +1,7 @@
 BEGIN TRANSACTION;
 
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS examples;
 DROP SEQUENCE IF EXISTS seq_user_id;
 
 CREATE SEQUENCE seq_user_id
@@ -21,5 +22,14 @@ CREATE TABLE users (
 INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
 INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
 
+CREATE TABLE examples (
+        example_id SERIAL PRIMARY KEY,
+        title VARCHAR(80) NOT NULL,
+        snippet VARCHAR(1000) NOT NULL
+);
+
+INSERT INTO examples (example_id, title, snippet) VALUES (DEFAULT, 'Hello World', 'console.log("hello world");');
 
 COMMIT TRANSACTION;
+
+
