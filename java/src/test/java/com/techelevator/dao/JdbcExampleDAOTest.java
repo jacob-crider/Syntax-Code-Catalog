@@ -5,6 +5,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
+
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +37,19 @@ public class JdbcExampleDAOTest extends DAOIntegrationTest {
         Assert.assertEquals(expectedList, testExampleList);
     }
 
+    @Test
+    public void add_example() {
+        //Arrange
+        Example example = new Example();
+        example.setSnippet("Test");
+        example.setTitle("Title");
+        //Act
+        example = exampleDAO.addExample(example);
+        Example actualResult = selectExampleById(example.getExampleID());
+        //Assert
+        Assert.assertEquals(example, actualResult);
+    }
+
     private Example insertExample(String title, String snippet) {
         String sql = "INSERT INTO examples (example_id, title, snippet) VALUES (DEFAULT, ?, ?) RETURNING example_id";
         Integer exampleId = jdbcTemplate.queryForObject(sql, Integer.class, title, snippet);
@@ -44,6 +59,28 @@ public class JdbcExampleDAOTest extends DAOIntegrationTest {
         example.setTitle(title);
         example.setSnippet(snippet);
 
+        return example;
+    }
+
+    private Example mapRowToExample(SqlRowSet row) {
+        Example example = new Example();
+        example.setExampleID(row.getInt("example_id"));
+        example.setTitle(row.getString("title"));
+        example.setSnippet(row.getString("snippet"));
+
+        return example;
+    }
+
+    private Example selectExampleById(int example_id) {
+        Example example = new Example();
+
+        String sql = "SELECT example_id, title, snippet FROM examples WHERE example_id = ?";
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, example_id);
+
+        while (results.next()) {
+            example = mapRowToExample(results);
+        }
         return example;
     }
 

@@ -31,6 +31,19 @@ public class JdbcExampleDAO implements ExampleDAO {
         return examples;
     }
 
+    @Override
+    public Example addExample(Example example) {
+
+        String sql = "INSERT INTO examples (example_id, title, snippet) VALUES (DEFAULT, ?, ?) RETURNING example_id";
+
+        Integer exampleId = jdbcTemplate.queryForObject(sql, Integer.class, example.getTitle(), example.getSnippet());
+
+        example.setExampleID(exampleId);
+
+        return example;
+    }
+
+
     private Example mapRowToExample(SqlRowSet row) {
         Example example = new Example();
         example.setExampleID(row.getInt("example_id"));

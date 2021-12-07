@@ -6,4 +6,6 @@ import java.util.List;
 public interface ExampleDAO {
 
     List<Example> getAllExamples();
+
+    Example addExample(Example example);
 }
