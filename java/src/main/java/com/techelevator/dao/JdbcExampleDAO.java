@@ -40,9 +40,9 @@ public class JdbcExampleDAO implements ExampleDAO {
     @Override
     public Example addExample(Example example) {
 
-        String sql = "INSERT INTO examples (example_id, title, snippet) VALUES (DEFAULT, ?, ?) RETURNING example_id";
+        String sql = "INSERT INTO examples (example_id, title, snippet, language_id) VALUES (DEFAULT, ?, ?, (SELECT id FROM languages WHERE type = ?)) RETURNING example_id";
 
-        Integer exampleId = jdbcTemplate.queryForObject(sql, Integer.class, example.getTitle(), example.getSnippet());
+        Integer exampleId = jdbcTemplate.queryForObject(sql, Integer.class, example.getTitle(), example.getSnippet(), example.getLanguageType());
 
         example.setExampleID(exampleId);
 

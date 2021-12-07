@@ -1,9 +1,8 @@
 <template>
   <div>
     <h1>{{ example.title }}</h1>
-    <p>Language placeholder</p>
-    <p>Tag placeholder</p>
-    <p>Description of the code block placeholder</p>
+    <p>{{ example.languageType }}</p>
+    <p v-if="example.tagList.length !== 0">Tags: <span v-for="tag in example.tagList" v-bind:key="tag.id">{{tag.name}}</span> </p> 
     <div>
       <pre><code>{{ example.snippet }}</code></pre>
     </div>
@@ -11,10 +10,14 @@
 </template>
 
 <script>
+
 export default {
   name: "example",
   props: ["example"],
+
 };
 </script>
 
-<style></style>
+<style>
+
+</style>

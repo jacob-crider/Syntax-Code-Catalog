@@ -7,6 +7,14 @@
           <label for="snippet">Snippet</label>
           <textarea id="snippet" v-model="example.snippet"></textarea>
 
+          <label for="languageType">Language</label>
+          <select id="statusFilter" v-model="example.languageType">
+            <option value="">Show All</option>
+            <option >JavaScript</option>
+            <option >Java</option>
+            <option >SQL</option>
+          </select>
+
           <button @click.prevent="addExample">Submit</button>
       </form>
   </div>
@@ -20,7 +28,8 @@ export default {
         return {
             example: {
                 title: '',
-                snippet: ''
+                snippet: '',
+                languageType: ''
             }
         }
     }, 

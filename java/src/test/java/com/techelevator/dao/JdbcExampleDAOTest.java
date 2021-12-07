@@ -1,6 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Example;
+import com.techelevator.model.Tag;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,6 +15,7 @@ import java.util.List;
 public class JdbcExampleDAOTest extends DAOIntegrationTest {
 
     private ExampleDAO exampleDAO;
+    private TagDAO tagDAO;
     private JdbcTemplate jdbcTemplate;
 
     @Before
@@ -21,6 +23,7 @@ public class JdbcExampleDAOTest extends DAOIntegrationTest {
         DataSource dataSource = this.getDataSource();
         jdbcTemplate = new JdbcTemplate(dataSource);
         exampleDAO = new JdbcExampleDAO(jdbcTemplate);
+        tagDAO = new JdbcTagDAO(jdbcTemplate);
     }
 
     @Test
@@ -66,7 +69,11 @@ public class JdbcExampleDAOTest extends DAOIntegrationTest {
         example.setExampleID(exampleId);
         example.setTitle(title);
         example.setSnippet(snippet);
-       // example.setLanguage(testLanguage);
+       example.setLanguageType(testLanguage);
+       example.setLanguageId(languageId);
+
+        List<Tag> tagList = tagDAO.getTagsByExampleId(example);
+        example.setTagList(tagList);
 
         return example;
     }
@@ -76,7 +83,7 @@ public class JdbcExampleDAOTest extends DAOIntegrationTest {
         example.setExampleID(row.getInt("example_id"));
         example.setTitle(row.getString("title"));
         example.setSnippet(row.getString("snippet"));
-      //  example.setLanguage(row.getString("languages.type"));
+        example.setLanguageType(row.getString("languages.type"));
 
         return example;
     }

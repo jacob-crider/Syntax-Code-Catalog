@@ -65,11 +65,11 @@ public class Example {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Example example = (Example) o;
-        return exampleID == example.exampleID && Objects.equals(title, example.title) && Objects.equals(snippet, example.snippet) && Objects.equals(languageType, example.languageType) && Objects.equals(languageId, example.languageId);
+        return exampleID == example.exampleID && Objects.equals(title, example.title) && Objects.equals(snippet, example.snippet) && Objects.equals(languageType, example.languageType) && Objects.equals(languageId, example.languageId) && Objects.equals(tagList, example.tagList);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(exampleID, title, snippet, languageType, languageId);
+        return Objects.hash(exampleID, title, snippet, languageType, languageId, tagList);
     }
 }
