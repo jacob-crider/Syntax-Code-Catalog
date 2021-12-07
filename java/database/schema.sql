@@ -1,7 +1,10 @@
 BEGIN TRANSACTION;
 
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS example_tag;
+DROP TABLE IF EXISTS tags;
 DROP TABLE IF EXISTS examples;
+DROP TABLE IF EXISTS languages;
 DROP SEQUENCE IF EXISTS seq_user_id;
 
 CREATE SEQUENCE seq_user_id
@@ -22,14 +25,48 @@ CREATE TABLE users (
 INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
 INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
 
+CREATE TABLE languages (
+      id SERIAL PRIMARY KEY,
+      type VARCHAR(32) NOT NULL
+);
+
 CREATE TABLE examples (
         example_id SERIAL PRIMARY KEY,
         title VARCHAR(80) NOT NULL,
-        snippet VARCHAR(1000) NOT NULL
+        snippet VARCHAR(1000) NOT NULL,
+        language_id bigint,
+
+        constraint fk_language_id foreign key (language_id) references languages(id)
 );
 
-INSERT INTO examples (example_id, title, snippet) VALUES (DEFAULT, 'Hello World', 'console.log("hello world");');
+CREATE TABLE tags (
+      id SERIAL PRIMARY KEY,
+      name VARCHAR(120) NOT NULL
+);
+
+CREATE TABLE example_tag (
+        example_id bigint,
+        tag_id bigint,
+        
+        constraint fk_example_id foreign key (example_id) references examples(example_id),
+        constraint fk_tag_id foreign key (tag_id) references tags(id),
+        constraint pk_example_tag primary key (example_id, tag_id)
+);
+
+INSERT INTO languages (id, type) VALUES (DEFAULT, 'JavaScript');
+INSERT INTO languages (id, type) VALUES (DEFAULT, 'Java');
+INSERT INTO languages (id, type) VALUES (DEFAULT, 'SQL');
+
+INSERT INTO tags (id, name) VALUES (DEFAULT, 'Loops');
+INSERT INTO tags (id, name) VALUES (DEFAULT, 'Branches');
+INSERT INTO tags (id, name) VALUES (DEFAULT, 'Arrays');
+INSERT INTO tags (id, name) VALUES (DEFAULT, 'Other');
+
+INSERT INTO examples (example_id, title, snippet, language_id) VALUES (DEFAULT, 'Hello World', 'console.log("hello world");', 1);
+
+INSERT INTO example_tag (example_id, tag_id) VALUES (1, 4);
 
 COMMIT TRANSACTION;
+
 
 
