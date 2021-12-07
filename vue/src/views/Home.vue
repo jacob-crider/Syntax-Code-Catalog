@@ -1,7 +1,8 @@
 <template>
   <div class="home">
     <h1 class="title">Code Snippets</h1>
-    <p class="title">You must be authenticated to see this</p>
+    <p class="title">Code your heart away!</p>
+    <router-link tag="button" to="/addExample">Add Snippet</router-link>
     <example-list />
   </div>
 </template>

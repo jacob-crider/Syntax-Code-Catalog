@@ -1,11 +1,11 @@
 package com.techelevator.controller;
 import com.techelevator.dao.ExampleDAO;
+import com.techelevator.exception.InvalidAddException;
 import com.techelevator.model.Example;
+import org.springframework.dao.DataAccessException;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,5 +23,15 @@ public class ApiController {
     @RequestMapping(path="/examples", method=RequestMethod.GET)
     public List<Example> getExamples() {
         return exampleDAO.getAllExamples();
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @RequestMapping(path="/examples", method=RequestMethod.POST)
+    public void addExample(@RequestBody Example example) throws InvalidAddException {
+         try {
+             exampleDAO.addExample(example);
+         } catch (DataAccessException ex) {
+             throw new InvalidAddException();
+        }
     }
 }
