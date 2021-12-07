@@ -25,8 +25,9 @@ public class JdbcExampleDAOTest extends DAOIntegrationTest {
 
     @Test
     public void get_all_examples() {
+        //insertLanguage("Test");
         List<Example> expectedList = new ArrayList<>();
-        String sql = "TRUNCATE TABLE examples";
+        String sql = "TRUNCATE TABLE examples CASCADE";
         jdbcTemplate.update(sql);
 
         expectedList.add(insertExample("test example one", "test example one"));
@@ -50,14 +51,22 @@ public class JdbcExampleDAOTest extends DAOIntegrationTest {
         Assert.assertEquals(example, actualResult);
     }
 
+    private Integer insertLanguage(String language) {
+        String sql = "INSERT INTO languages (id, type) VALUES (DEFAULT, ?) RETURNING id";
+        return jdbcTemplate.queryForObject(sql, Integer.class, language);
+    }
+
     private Example insertExample(String title, String snippet) {
-        String sql = "INSERT INTO examples (example_id, title, snippet) VALUES (DEFAULT, ?, ?) RETURNING example_id";
-        Integer exampleId = jdbcTemplate.queryForObject(sql, Integer.class, title, snippet);
+        String testLanguage = "Test language";
+        Integer languageId = insertLanguage(testLanguage);
+        String sql = "INSERT INTO examples (example_id, title, snippet, language_id) VALUES (DEFAULT, ?, ?, ?) RETURNING example_id";
+        Integer exampleId = jdbcTemplate.queryForObject(sql, Integer.class, title, snippet, languageId);
 
         Example example = new Example();
         example.setExampleID(exampleId);
         example.setTitle(title);
         example.setSnippet(snippet);
+       // example.setLanguage(testLanguage);
 
         return example;
     }
@@ -67,6 +76,7 @@ public class JdbcExampleDAOTest extends DAOIntegrationTest {
         example.setExampleID(row.getInt("example_id"));
         example.setTitle(row.getString("title"));
         example.setSnippet(row.getString("snippet"));
+      //  example.setLanguage(row.getString("languages.type"));
 
         return example;
     }
@@ -74,7 +84,8 @@ public class JdbcExampleDAOTest extends DAOIntegrationTest {
     private Example selectExampleById(int example_id) {
         Example example = new Example();
 
-        String sql = "SELECT example_id, title, snippet FROM examples WHERE example_id = ?";
+        String sql = "SELECT example_id, title, snippet, languages.type FROM examples " +
+                                "JOIN languages ON languages.id = examples.language_id WHERE example_id = ?";
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, example_id);
 
