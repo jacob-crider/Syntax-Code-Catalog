@@ -5,7 +5,7 @@
           <input type="text" id="title" v-model="example.title">
 
           <label for="snippet">Snippet</label>
-          <input type="textarea" id="snippet" v-model="example.snippet">
+          <textarea id="snippet" v-model="example.snippet"></textarea>
 
           <button @click.prevent="addExample">Submit</button>
       </form>

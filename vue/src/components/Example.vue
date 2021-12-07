@@ -5,7 +5,7 @@
     <p>Tag placeholder</p>
     <p>Description of the code block placeholder</p>
     <div>
-      <code>{{ example.snippet }}</code>
+      <pre><code>{{ example.snippet }}</code></pre>
     </div>
   </div>
 </template>
