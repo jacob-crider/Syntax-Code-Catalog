@@ -1,12 +1,22 @@
 <template>
   <div class="home">
-    <h1>Home</h1>
-    <p>You must be authenticated to see this</p>
+    <h1 class="title">Code Snippets</h1>
+    <p class="title">You must be authenticated to see this</p>
+    <example-list />
   </div>
 </template>
 
 <script>
+import ExampleList from "../components/ExampleList.vue";
+
 export default {
-  name: "home"
+  components: { ExampleList },
+  name: "home",
 };
 </script>
+
+<style>
+.title {
+  text-align: center;
+}
+</style>
