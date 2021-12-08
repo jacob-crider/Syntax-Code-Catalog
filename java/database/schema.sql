@@ -64,8 +64,8 @@ INSERT INTO tags (id, name) VALUES (DEFAULT, 'Other');
 
 INSERT INTO examples (example_id, title, snippet, language_id) VALUES (DEFAULT, 'Hello World', 'console.log("hello world");', 1);
 INSERT INTO examples (example_id, title, snippet, language_id) VALUES (DEFAULT, 'if Block', 'if (x < 10) {
-    x += 1
-};', 1);
+    x += 1;
+}', 1);
 INSERT INTO examples (example_id, title, snippet, language_id) VALUES (DEFAULT, 'for Loop', 'for (let i = 0; i < array.length; i++) {
     array[i] = i * 2;
 }', 1);
@@ -79,9 +79,18 @@ INSERT INTO examples (example_id, title, snippet, language_id) VALUES (DEFAULT, 
 } ', 2);
 INSERT INTO examples (example_id, title, snippet, language_id) VALUES (DEFAULT, 'SELECT', 'SELECT * FROM users;', 3);
 INSERT INTO examples (example_id, title, snippet, language_id) VALUES (DEFAULT, 'INSERT', 'INSERT INTO users (id, name) 
-VALUES (1, ''John Doe'')', 3);
+VALUES (1, ''John Doe'');', 3);
 
 INSERT INTO example_tag (example_id, tag_id) VALUES (1, 4);
+INSERT INTO example_tag (example_id, tag_id) VALUES (2, 2);
+INSERT INTO example_tag (example_id, tag_id) VALUES (3, 3);
+INSERT INTO example_tag (example_id, tag_id) VALUES (3, 1);
+INSERT INTO example_tag (example_id, tag_id) VALUES (4, 3);
+INSERT INTO example_tag (example_id, tag_id) VALUES (5, 4);
+INSERT INTO example_tag (example_id, tag_id) VALUES (6, 2);
+INSERT INTO example_tag (example_id, tag_id) VALUES (7, 1);
+INSERT INTO example_tag (example_id, tag_id) VALUES (8, 4);
+INSERT INTO example_tag (example_id, tag_id) VALUES (9, 4);
 
 COMMIT TRANSACTION;
 
