@@ -2,7 +2,7 @@
   <div>
     <h1>{{ example.title }}</h1>
     <p>{{ example.languageType }}</p>
-    <p v-if="example.tagList.length !== 0">Tags: <span v-for="tag in example.tagList" v-bind:key="tag.id">{{tag.name}}</span> </p> 
+    <p v-if="example.tagList.length !== 0">Tags: <span v-for="tag in example.tagList" v-bind:key="tag.id">{{tag.name + " "}}</span> </p> 
     <div>
       <pre><code>{{ example.snippet }}</code></pre>
     </div>
@@ -19,5 +19,7 @@ export default {
 </script>
 
 <style>
-
+  span {
+    
+  }
 </style>
