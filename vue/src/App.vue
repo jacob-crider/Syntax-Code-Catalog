@@ -18,7 +18,7 @@ html {
 }
 
 div#app {
-  width: 80%;
+  width: 800px;
   margin: auto;
 }
 </style>
