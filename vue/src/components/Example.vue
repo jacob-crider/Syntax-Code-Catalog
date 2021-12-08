@@ -22,7 +22,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 div.card {
   margin: 20px 0;
   padding: 16px;

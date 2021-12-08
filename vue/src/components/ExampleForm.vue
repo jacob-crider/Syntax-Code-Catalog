@@ -104,7 +104,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
     label {
         display: inline-block;
         vertical-align: top;
