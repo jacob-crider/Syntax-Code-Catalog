@@ -93,8 +93,3 @@ INSERT INTO example_tag (example_id, tag_id) VALUES (8, 4);
 INSERT INTO example_tag (example_id, tag_id) VALUES (9, 4);
 
 COMMIT TRANSACTION;
-
-
-
-
-

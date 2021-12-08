@@ -44,13 +44,21 @@ public class JdbcLanguageDAO implements LanguageDAO {
     }
 
     @Override
-    public Language updateLanguage() {
-        return null;
+    public boolean updateLanguage(Language language) {
+        String sql = "UPDATE languages SET type = ? WHERE id = ?";
+
+        int rowCount = jdbcTemplate.update(sql, language.getType(), language.getId());
+
+        return rowCount > 0;
     }
 
     @Override
-    public void deleteLanguage() {
+    public boolean deleteLanguage(Language language) {
+        String sql = "DELETE FROM languages WHERE id = ?";
 
+        int rowCount = jdbcTemplate.update(sql, language.getId());
+
+        return rowCount > 0;
     }
 
     private Language mapRowToLanguage(SqlRowSet row) {
