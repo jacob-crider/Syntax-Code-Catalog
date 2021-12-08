@@ -63,14 +63,23 @@ INSERT INTO tags (id, name) VALUES (DEFAULT, 'Arrays');
 INSERT INTO tags (id, name) VALUES (DEFAULT, 'Other');
 
 INSERT INTO examples (example_id, title, snippet, language_id) VALUES (DEFAULT, 'Hello World', 'console.log("hello world");', 1);
-INSERT INTO examples (example_id, title, snippet, language_id) VALUES (DEFAULT, 'if Block', 'if (x < 10) {\nx += 1\n};', 1);
-INSERT INTO examples (example_id, title, snippet, language_id) VALUES (DEFAULT, 'for Loop', 'for (let i = 0; i < array.length; i++) {\narray[i] = i * 2;\n}', 1);
+INSERT INTO examples (example_id, title, snippet, language_id) VALUES (DEFAULT, 'if Block', 'if (x < 10) {
+    x += 1
+};', 1);
+INSERT INTO examples (example_id, title, snippet, language_id) VALUES (DEFAULT, 'for Loop', 'for (let i = 0; i < array.length; i++) {
+    array[i] = i * 2;
+}', 1);
 INSERT INTO examples (example_id, title, snippet, language_id) VALUES (DEFAULT, 'Array Initialization', 'const array = [1, 2, 3, 4];', 1);
 INSERT INTO examples (example_id, title, snippet, language_id) VALUES (DEFAULT, 'Hello World', 'System.out.println("hello world");', 2);
-INSERT INTO examples (example_id, title, snippet, language_id) VALUES (DEFAULT, 'if Block', 'if (str.equals("bird") {\nbird.tweet();\n})', 2);
-INSERT INTO examples (example_id, title, snippet, language_id) VALUES (DEFAULT, 'forEach Loop', 'for(int num : array) {\nSystem.out.println(num);\n} ', 2);
+INSERT INTO examples (example_id, title, snippet, language_id) VALUES (DEFAULT, 'if Block', 'if (str.equals("bird") {
+    bird.tweet();
+}', 2);
+INSERT INTO examples (example_id, title, snippet, language_id) VALUES (DEFAULT, 'forEach Loop', 'for(int num : array) {
+    System.out.println(num);
+} ', 2);
 INSERT INTO examples (example_id, title, snippet, language_id) VALUES (DEFAULT, 'SELECT', 'SELECT * FROM users;', 3);
-INSERT INTO examples (example_id, title, snippet, language_id) VALUES (DEFAULT, 'INSERT', 'INSERT INTO users (id, name) \nVALUES (1, ''John Doe'')', 3);
+INSERT INTO examples (example_id, title, snippet, language_id) VALUES (DEFAULT, 'INSERT', 'INSERT INTO users (id, name) 
+VALUES (1, ''John Doe'')', 3);
 
 INSERT INTO example_tag (example_id, tag_id) VALUES (1, 4);
 
