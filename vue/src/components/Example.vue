@@ -1,20 +1,24 @@
 <template>
   <div class="card">
-    <h1>{{ example.title }}</h1>
+    <h2>{{ example.title }}</h2>
     <p>{{ example.languageType }}</p>
-    <p v-if="example.tagList.length !== 0">Tags: <span v-for="tag in example.tagList" v-bind:key="tag.id">{{tag.name + " "}}</span> </p>
+    <p v-if="example.tagList.length !== 0">Tags: <span class="tag" v-for="tag in example.tagList"
+        v-bind:key="tag.id">{{ tag.name }}</span></p>
     <div>
-      <pre><code class="language-js">{{ example.snippet }}</code></pre>
+      <pre><code>{{ example.snippet }}</code></pre>
     </div>
   </div>
 </template>
 
 <script>
+import hljs from 'highlight.js/lib/common';
 
 export default {
-  name: "example",
-  props: ["example"],
-
+  name: 'example',
+  props: ['example'],
+  created() {
+    hljs.highlightAll();
+  }
 };
 </script>
 
@@ -22,11 +26,16 @@ export default {
 div.card {
   margin: 20px 0;
   padding: 16px;
-  background-color: #ddd;
+  background-color: lightblue;
   border-radius: 4px;
 }
 
-  span {
+span.tag {
+  padding: 0 4px;
+  border-right: 1px solid black;
+}
 
-  }
+span.tag:last-child {
+  border-right: none;
+}
 </style>

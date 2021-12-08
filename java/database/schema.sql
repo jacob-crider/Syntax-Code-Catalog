@@ -76,7 +76,7 @@ INSERT INTO examples (example_id, title, snippet, language_id) VALUES (DEFAULT, 
 }', 2);
 INSERT INTO examples (example_id, title, snippet, language_id) VALUES (DEFAULT, 'forEach Loop', 'for(int num : array) {
     System.out.println(num);
-} ', 2);
+}', 2);
 INSERT INTO examples (example_id, title, snippet, language_id) VALUES (DEFAULT, 'SELECT', 'SELECT * FROM users;', 3);
 INSERT INTO examples (example_id, title, snippet, language_id) VALUES (DEFAULT, 'INSERT', 'INSERT INTO users (id, name) 
 VALUES (1, ''John Doe'');', 3);
