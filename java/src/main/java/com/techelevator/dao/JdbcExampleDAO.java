@@ -45,6 +45,7 @@ public class JdbcExampleDAO implements ExampleDAO {
         Integer exampleId = jdbcTemplate.queryForObject(sql, Integer.class, example.getTitle(), example.getSnippet(), example.getLanguageType());
 
         example.setExampleID(exampleId);
+        tagDAO.insertTagsForExample(example);
 
         return example;
     }

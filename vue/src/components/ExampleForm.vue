@@ -8,12 +8,22 @@
           <textarea id="snippet" v-model="example.snippet"></textarea>
 
           <label for="languageType">Language</label>
-          <select id="statusFilter" v-model="example.languageType">
+          <select v-model="example.languageType">
             <option value="">Show All</option>
             <option >JavaScript</option>
             <option >Java</option>
             <option >SQL</option>
           </select>
+          
+          <p>Tags</p>
+          <input v-model="example.tagList" type="checkbox" id="Loops" name="Loops" v-bind:value="{name: 'Loops'}">
+            <label for="Loops">Loops</label>
+          <input v-model="example.tagList" type="checkbox" id="Branches" name="Branches" v-bind:value="{name: 'Branches'}">
+            <label for="Branches">Branches</label>
+          <input v-model="example.tagList" type="checkbox" id="Arrays" name="Arrays" v-bind:value="{name: 'Arrays'}">
+            <label for="Arrays">Arrays</label>
+          <input v-model="example.tagList" type="checkbox" id="Other" name="Other" v-bind:value="{name: 'Other'}">
+            <label for="Other">Other</label>      
 
           <button @click.prevent="addExample">Submit</button>
       </form>
@@ -29,7 +39,8 @@ export default {
             example: {
                 title: '',
                 snippet: '',
-                languageType: ''
+                languageType: '',
+                tagList: []
             }
         }
     }, 
@@ -47,7 +58,7 @@ export default {
                     console.error(error);
                 }
             });
-        }
+        },
     }
 }
 </script>

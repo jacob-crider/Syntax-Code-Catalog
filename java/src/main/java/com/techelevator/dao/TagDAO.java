@@ -8,4 +8,6 @@ import java.util.List;
 public interface TagDAO {
 
     List<Tag> getTagsByExampleId(Example example);
+
+    void insertTagsForExample(Example example);
 }

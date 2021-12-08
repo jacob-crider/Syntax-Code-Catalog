@@ -35,4 +35,15 @@ public class JdbcTagDAO implements TagDAO {
         }
         return tags;
     }
+
+    @Override
+    public void insertTagsForExample(Example example) {
+        String sql = "INSERT INTO example_tag (example_id, tag_id) VALUES (?, (SELECT id FROM tags WHERE name = ?))";
+
+        if (example.getTagList().size() != 0) {
+            for (Tag currentTag: example.getTagList()) {
+                jdbcTemplate.update(sql, example.getExampleID(), currentTag.getName());
+            }
+        }
+    }
 }
