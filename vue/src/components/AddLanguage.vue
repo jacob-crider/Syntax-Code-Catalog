@@ -2,8 +2,8 @@
   <div>
     <form>
       <div>
-        <label for="type">Language</label>
-        <input type="text" v-model="language.type" />
+        <label for="language-type">Language</label>
+        <input id="language-type" type="text" v-model="language.type" />
         <button @click.prevent="addNewLanguage">Submit</button>
       </div>
     </form>
@@ -11,36 +11,47 @@
 </template>
 
 <script>
-import languageService from "../services/LanguageService";
+import languageService from '../services/LanguageService';
 
 export default {
-  name: "AddLanguage",
+  name: 'AddLanguage',
   data() {
     return {
       language: {
-        type: "",
+        type: '',
       },
     };
   },
   methods: {
     addNewLanguage() {
-      languageService
-        .addLanguage(this.language)
-        .then((response) => {
-          if (response.status == 201) {
-            this.language.type = "";
-            alert("Language added successfully!");
-            this.$router.go(this.$router.currentRoute);
-          }
-        })
-        .catch((error) => {
-          alert("Could not add language.");
-          console.error(error);
-        });
+      languageService.addLanguage(this.language).then((response) => {
+        if (response.status === 201) {
+          this.language.type = '';
+          alert('Language added successfully!');
+          this.$router.go(this.$router.currentRoute);
+        }
+      }).catch((error) => {
+        alert('Could not add language.');
+        console.error(error);
+      });
     },
   },
 };
 </script>
 
-<style>
+<style scoped>
+form {
+  width: 100%;
+  max-width: 480px;
+  margin: auto;
+  padding: 10px;
+  border-radius: 4px;
+  background-color: lightblue;
+  line-height: 1.5;
+}
+
+input {
+  margin: 0 8px;
+  width: 60%;
+}
 </style>
