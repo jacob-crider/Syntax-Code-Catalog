@@ -1,28 +1,30 @@
 <template>
   <div>
     <table>
+      <thead>
       <tr>
         <th>Type</th>
         <th>Active</th>
         <th></th>
       </tr>
+      </thead>
       <tbody>
-        <language
+      <language
           v-for="currentLanguage in languages"
           v-bind:language="currentLanguage"
           v-bind:key="currentLanguage.id"
-        />
+      />
       </tbody>
     </table>
   </div>
 </template>
 
 <script>
-import Language from "./Language.vue";
-import languageService from "../services/LanguageService";
+import Language from './Language.vue';
+import languageService from '../services/LanguageService';
 
 export default {
-  name: "LanguageList",
+  name: 'LanguageList',
   components: {
     Language,
   },
@@ -32,17 +34,23 @@ export default {
     };
   },
   created() {
-    languageService
-      .getAllLanguages()
-      .then((response) => {
-        this.languages = response.data;
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    languageService.getAllLanguages().then((response) => {
+      this.languages = response.data;
+    }).catch((error) => {
+      console.error(error);
+    });
   },
 };
 </script>
 
-<style>
+<style scoped>
+table {
+  table-layout: auto;
+  width: 100%;
+  max-width: 480px;
+  margin: auto;
+  padding: 10px;
+  background-color: lightblue;
+  border-radius: 4px;
+}
 </style>

@@ -3,9 +3,10 @@
     <div id="nav">
       <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
       <router-link
-        v-bind:to="{ name: 'logout' }"
-        v-if="$store.state.token != ''"
-        >Logout</router-link
+          v-bind:to="{ name: 'logout' }"
+          v-if="$store.state.token !== ''"
+      >Logout
+      </router-link
       >
     </div>
     <router-view />
@@ -15,6 +16,11 @@
 <style>
 html {
   font-family: "Roboto", sans-serif;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
 }
 
 div#app {
