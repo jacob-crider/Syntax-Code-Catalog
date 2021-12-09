@@ -16,7 +16,7 @@ import hljs from 'highlight.js/lib/common';
 export default {
   name: 'example',
   props: ['example'],
-  created() {
+  mounted() {
     hljs.highlightAll();
   }
 };
