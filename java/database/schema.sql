@@ -27,7 +27,8 @@ INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpUL
 
 CREATE TABLE languages (
       id SERIAL PRIMARY KEY,
-      type VARCHAR(32) NOT NULL
+      type VARCHAR(32) NOT NULL,
+      is_deleted BOOLEAN DEFAULT false
 );
 
 CREATE TABLE examples (

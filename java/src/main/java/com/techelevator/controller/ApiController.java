@@ -69,18 +69,4 @@ public class ApiController {
         }
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @RequestMapping(path = "/languages", method = RequestMethod.DELETE)
-    public void deleteLanguage(@RequestBody Language language) throws BadRequestException {
-        try {
-            boolean deleted = languageDAO.deleteLanguage(language);
-            if (!deleted) {
-                throw new BadRequestException();
-            }
-        } catch (DataAccessException e) {
-            throw new BadRequestException();
-        }
-    }
-
 }

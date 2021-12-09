@@ -6,6 +6,7 @@ import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
 import AddExample from '../views/AddExample.vue'
+import Language from '../views/Language'
 
 Vue.use(Router)
 
@@ -27,7 +28,8 @@ const router = new Router({
       name: 'home',
       component: Home,
       meta: {
-        requiresAuth: true
+        requiresAuth: true,
+        requiresAdmin: false
       }
     },
     {
@@ -35,7 +37,8 @@ const router = new Router({
       name: "login",
       component: Login,
       meta: {
-        requiresAuth: false
+        requiresAuth: false,
+        requiresAdmin: false
       }
     },
     {
@@ -43,7 +46,8 @@ const router = new Router({
       name: "logout",
       component: Logout,
       meta: {
-        requiresAuth: false
+        requiresAuth: false,
+        requiresAdmin: false
       }
     },
     {
@@ -51,7 +55,8 @@ const router = new Router({
       name: "register",
       component: Register,
       meta: {
-        requiresAuth: false
+        requiresAuth: false,
+        requiresAdmin: false
       }
     },
     {
@@ -59,7 +64,17 @@ const router = new Router({
       name: 'addExample',
       component: AddExample,
       meta: {
-        requiresAuth: true
+        requiresAuth: true,
+        requiresAdmin: false
+      }
+    },
+    {
+      path: '/language',
+      name: 'language',
+      component: Language,
+      meta: {
+        requiresAuth: true,
+        requiresAdmin: true
       }
     }
   ]
@@ -73,8 +88,11 @@ router.beforeEach((to, from, next) => {
   if (requiresAuth && store.state.token === '') {
     next("/login");
   } else {
-    // Else let them go to their next destination
-    next();
+    if (to.meta.requiresAdmin && store.state.user.authorities[0].name !== 'ROLE_ADMIN') {
+      next('/');
+    } else {
+      next();
+    }
   }
 });
 

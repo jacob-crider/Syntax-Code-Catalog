@@ -20,7 +20,7 @@ public class JdbcLanguageDAO implements LanguageDAO {
     @Override
     public List<Language> getAllLanguages() {
         List<Language> languages = new ArrayList<>();
-        String sql = "SELECT id, type FROM languages";
+        String sql = "SELECT id, type, is_deleted FROM languages";
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
         while (results.next()) {
@@ -45,18 +45,9 @@ public class JdbcLanguageDAO implements LanguageDAO {
 
     @Override
     public boolean updateLanguage(Language language) {
-        String sql = "UPDATE languages SET type = ? WHERE id = ?";
+        String sql = "UPDATE languages SET type = ?, is_deleted = ? WHERE id = ?";
 
-        int rowCount = jdbcTemplate.update(sql, language.getType(), language.getId());
-
-        return rowCount > 0;
-    }
-
-    @Override
-    public boolean deleteLanguage(Language language) {
-        String sql = "DELETE FROM languages WHERE id = ?";
-
-        int rowCount = jdbcTemplate.update(sql, language.getId());
+        int rowCount = jdbcTemplate.update(sql, language.getType(), language.isDeleted(), language.getId());
 
         return rowCount > 0;
     }
@@ -65,6 +56,7 @@ public class JdbcLanguageDAO implements LanguageDAO {
         Language language = new Language();
         language.setId(row.getInt("id"));
         language.setType(row.getString("type"));
+        language.setDeleted(row.getBoolean("is_deleted"));
 
         return language;
     }

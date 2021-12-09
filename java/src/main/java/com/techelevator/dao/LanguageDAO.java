@@ -9,5 +9,4 @@ public interface LanguageDAO {
     List<Language> getAllLanguages();
     Language addLanguage(String language);
     boolean updateLanguage(Language language);
-    boolean deleteLanguage(Language language);
 }

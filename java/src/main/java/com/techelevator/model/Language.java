@@ -6,6 +6,15 @@ public class Language {
 
     private Integer id;
     private String type;
+    private boolean isDeleted;
+
+    public boolean isDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        isDeleted = deleted;
+    }
 
     public Integer getId() {
         return id;
@@ -28,11 +37,11 @@ public class Language {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Language language = (Language) o;
-        return Objects.equals(id, language.id) && Objects.equals(type, language.type);
+        return isDeleted == language.isDeleted && Objects.equals(id, language.id) && Objects.equals(type, language.type);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, type);
+        return Objects.hash(id, type, isDeleted);
     }
 }

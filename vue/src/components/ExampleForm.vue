@@ -15,9 +15,7 @@
         <label for="languageType">Language</label>
         <select v-model="example.languageType">
           <option value="">Show All</option>
-          <option>JavaScript</option>
-          <option>Java</option>
-          <option>SQL</option>
+          <option v-for="language in languages" v-bind:key="language.id" v-bind:value="language.type">{{language.type}}</option>
         </select>
       </div>
 
@@ -70,6 +68,7 @@
 
 <script>
 import exampleService from "../services/ExampleService";
+import languageService from '../services/LanguageService';
 
 export default {
   data() {
@@ -80,6 +79,7 @@ export default {
         languageType: "",
         tagList: [],
       },
+      languages: []
     };
   },
   methods: {
@@ -101,6 +101,13 @@ export default {
         });
     },
   },
+  created() {
+    languageService.getAllLanguages().then(response => {
+      this.languages = response.data.filter(language => !language.deleted);
+    }).catch(error => {
+      console.error(error);
+    });
+  }
 };
 </script>
 
