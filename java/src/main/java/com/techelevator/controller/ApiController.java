@@ -36,7 +36,8 @@ public class ApiController {
         try {
             exampleDAO.addExample(example);
         } catch (DataAccessException ex) {
-            throw new BadRequestException();
+//            throw new BadRequestException();
+            ex.printStackTrace();
         }
     }
 

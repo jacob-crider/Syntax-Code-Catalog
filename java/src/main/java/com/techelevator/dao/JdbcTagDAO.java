@@ -38,12 +38,53 @@ public class JdbcTagDAO implements TagDAO {
 
     @Override
     public void insertTagsForExample(Example example) {
+        List<Tag> allTags = getAllTags();
         String sql = "INSERT INTO example_tag (example_id, tag_id) VALUES (?, (SELECT id FROM tags WHERE name = ?))";
 
         if (example.getTagList().size() != 0) {
-            for (Tag currentTag: example.getTagList()) {
-                jdbcTemplate.update(sql, example.getExampleID(), currentTag.getName());
+
+            for (Tag userCurrentTag: example.getTagList()) {
+                boolean isMatch = false;
+
+                for (Tag tagInAllTagsList : allTags) {
+
+                    if (userCurrentTag.getName().equals(tagInAllTagsList.getName())) {
+                        isMatch = true;
+                        jdbcTemplate.update(sql, example.getExampleID(), userCurrentTag.getName());
+                    }
+                }
+                if (!isMatch) {
+                    Tag newTag = insertTag(userCurrentTag.getName());
+                    jdbcTemplate.update(sql, example.getExampleID(), newTag.getName());
+                }
             }
         }
+    }
+
+    private List<Tag> getAllTags() {
+        List<Tag> tags = new ArrayList<>();
+        String sql = "SELECT id, name FROM tags";
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+
+        while(results.next()) {
+            Tag tag = new Tag();
+            tag.setId(results.getInt("id"));
+            tag.setName(results.getString("name"));
+
+            tags.add(tag);
+        }
+        return tags;
+    }
+
+    private Tag insertTag(String tagName) {
+        Tag tag = new Tag();
+        String sql = "INSERT INTO tags (id, name) VALUES (DEFAULT, ?) RETURNING id";
+
+        Integer id = jdbcTemplate.queryForObject(sql, Integer.class, tagName);
+        tag.setName(tagName);
+        tag.setId(id);
+
+        return tag;
     }
 }
