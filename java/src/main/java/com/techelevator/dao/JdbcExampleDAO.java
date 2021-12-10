@@ -55,6 +55,7 @@ public class JdbcExampleDAO implements ExampleDAO {
         String sql = "UPDATE examples SET title = ?, snippet = ?, language_id = ?, description = ?, is_public = ? WHERE example_id = ?";
 
         int rowCount = jdbcTemplate.update(sql, example.getTitle(), example.getSnippet(), example.getLanguageId(), example.getDescription(), example.isPublic(), example.getExampleID());
+        tagDAO.replaceTags(example);
 
         return rowCount > 0;
     }
