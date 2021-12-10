@@ -1,14 +1,14 @@
 <template>
-  <example-form></example-form>
+  <add-example-form></add-example-form>
 </template>
 
 <script>
-import ExampleForm from '../components/ExampleForm.vue';
+import AddExampleForm from '../components/AddExampleForm.vue';
 
 export default {
     name: 'AddExample',
     components: {
-        ExampleForm
+        AddExampleForm
     }
 }
 </script>

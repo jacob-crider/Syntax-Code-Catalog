@@ -8,17 +8,35 @@
       <pre><code>{{ example.snippet }}</code></pre>
     </div>
       <p>{{ example.description }}</p>
+      <button @click.prevent="showForm = true" v-if="isAdmin">Edit</button>
+      
+      <edit-example-form v-if="showForm" v-bind:example="example" />
+      
   </div>
 </template>
 
 <script>
 import hljs from 'highlight.js/lib/common';
+import EditExampleForm from './EditExampleForm.vue'
 
 export default {
   name: 'example',
   props: ['example'],
+  components: {
+    EditExampleForm
+  },
   mounted() {
     hljs.highlightAll();
+  },
+  computed: {
+    isAdmin() {
+      return (this.$store.state.token !== '') && (this.$store.state.user.authorities[0].name === 'ROLE_ADMIN');
+    }
+  },
+  data() {
+    return {
+      showForm: false
+    }
   }
 };
 </script>

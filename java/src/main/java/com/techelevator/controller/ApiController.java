@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @PreAuthorize("isAuthenticated()")
@@ -32,9 +33,19 @@ public class ApiController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/examples", method = RequestMethod.POST)
-    public void addExample(@RequestBody Example example) throws BadRequestException {
+    public void addExample(@RequestBody Example example, Principal principal) throws BadRequestException {
         try {
-            exampleDAO.addExample(example);
+            exampleDAO.addExample(example, principal.getName());
+        } catch (DataAccessException ex) {
+//            throw new BadRequestException();
+            ex.printStackTrace();
+        }
+    }
+
+    @RequestMapping(path = "/examples", method = RequestMethod.PUT)
+    public void updateExample(@RequestBody Example example) {
+        try {
+            exampleDAO.updateExample(example);
         } catch (DataAccessException ex) {
 //            throw new BadRequestException();
             ex.printStackTrace();

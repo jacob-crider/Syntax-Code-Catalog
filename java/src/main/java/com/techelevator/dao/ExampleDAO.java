@@ -7,5 +7,6 @@ public interface ExampleDAO {
 
     List<Example> getAllExamples();
 
-    Example addExample(Example example);
+    Example addExample(Example example, String username);
+    boolean updateExample(Example example);
 }

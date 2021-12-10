@@ -12,6 +12,24 @@ public class Example {
     private Integer languageId;
     private List<Tag> tagList;
     private String description;
+    private boolean isPublic;
+    private String username;
+
+    public boolean isPublic() {
+        return isPublic;
+    }
+
+    public void setPublic(boolean aPublic) {
+        isPublic = aPublic;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public String getDescription() {
         return description;
@@ -74,11 +92,11 @@ public class Example {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Example example = (Example) o;
-        return exampleID == example.exampleID && Objects.equals(title, example.title) && Objects.equals(snippet, example.snippet) && Objects.equals(languageType, example.languageType) && Objects.equals(languageId, example.languageId) && Objects.equals(tagList, example.tagList) && Objects.equals(description, example.description);
+        return exampleID == example.exampleID && isPublic == example.isPublic && Objects.equals(title, example.title) && Objects.equals(snippet, example.snippet) && Objects.equals(languageType, example.languageType) && Objects.equals(languageId, example.languageId) && Objects.equals(tagList, example.tagList) && Objects.equals(description, example.description) && Objects.equals(username, example.username);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(exampleID, title, snippet, languageType, languageId, tagList, description);
+        return Objects.hash(exampleID, title, snippet, languageType, languageId, tagList, description, isPublic, username);
     }
 }

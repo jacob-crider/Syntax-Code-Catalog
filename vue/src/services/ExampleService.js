@@ -6,5 +6,8 @@ export default {
     },
     addExample(example) {
         return axios.post('/examples', example);
+    },
+    updateExample(example) {
+        return axios.put('/examples', example);
     }
 }

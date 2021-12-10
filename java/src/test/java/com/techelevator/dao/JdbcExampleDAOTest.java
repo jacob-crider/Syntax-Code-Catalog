@@ -47,8 +47,9 @@ public class JdbcExampleDAOTest extends DAOIntegrationTest {
         Example example = new Example();
         example.setSnippet("Test");
         example.setTitle("Title");
+        String username = "Test";
         //Act
-        example = exampleDAO.addExample(example);
+        example = exampleDAO.addExample(example, username);
         Example actualResult = selectExampleById(example.getExampleID());
         //Assert
         Assert.assertEquals(example, actualResult);

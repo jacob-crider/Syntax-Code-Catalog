@@ -3,22 +3,22 @@
     <form>
       <div>
         <label for="title">Title</label>
-        <input type="text" id="title" v-model="example.title" />
+        <input type="text" id="title" v-model="editedExample.title" />
       </div>
 
       <div>
         <label for="snippet">Snippet</label>
-        <textarea id="snippet" v-model="example.snippet"></textarea>
+        <textarea id="snippet" v-model="editedExample.snippet"></textarea>
       </div>
 
       <div>
         <label for="description">Description and Reference</label>
-        <textarea id="description" v-model="example.description"></textarea>
+        <textarea id="description" v-model="editedExample.description"></textarea>
       </div>
 
       <div>
         <label for="languageType">Language</label>
-        <select v-model="example.languageType">
+        <select v-model="editedExample.languageType">
           <option value="">Show All</option>
           <option
             v-for="language in languages"
@@ -36,7 +36,7 @@
         <input type="text" v-model="tag" />
       </div>
 
-      <button @click.prevent="addExample">Submit</button>
+      <button @click.prevent="updateExample">Submit</button>
     </form>
   </div>
 </template>
@@ -46,36 +46,38 @@ import exampleService from "../services/ExampleService";
 import languageService from "../services/LanguageService";
 
 export default {
+  name: 'EditExampleForm',
+  props: ['example'],
   data() {
     return {
-      example: {
-        title: "",
-        snippet: "",
-        languageType: "",
-        description: "",
+      editedExample: {
+        title: '',
+        snippet: '',
+        languageType: '',
+        description: '',
         tagList: [],
       },
       languages: [],
-      tag: "",
+      tag: '',
     };
   },
   methods: {
-    addExample() {
+    updateExample() {
       if (this.tag != '') {
        let arrayOfTags = this.tag.split(" ");
-       this.example.tagList = arrayOfTags.map(tag => ({
+       this.editedExample.tagList = arrayOfTags.map(tag => ({
            name: tag
        }));
       }
       exampleService
-        .addExample(this.example)
+        .updateExample(this.editedExample)
         .then((response) => {
-          if (response.status == 201) {
-            this.$router.push("/");
+          if (response.status === 200) {
+            this.$router.go(this.$router.currentRoute);
           }
         })
         .catch((error) => {
-          if (error.response.status == 400) {
+          if (error.response.status === 400) {
             // TODO: Route user to error page
             console.error(error);
           } else {
@@ -93,7 +95,11 @@ export default {
       .catch((error) => {
         console.error(error);
       });
+    
+    this.editedExample = {...this.example};
+
   },
+  
 };
 </script>
 
