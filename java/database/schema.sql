@@ -36,6 +36,9 @@ CREATE TABLE examples (
         title VARCHAR(80) NOT NULL,
         snippet VARCHAR(1000) NOT NULL,
         language_id bigint,
+        description VARCHAR(1000),
+        username VARCHAR(64),
+        is_public BOOLEAN DEFAULT FALSE,
 
         constraint fk_language_id foreign key (language_id) references languages(id)
 );
