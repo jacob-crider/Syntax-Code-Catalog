@@ -24,7 +24,7 @@ public class JdbcExampleDAO implements ExampleDAO {
     public List<Example> getAllExamples() {
         List<Example> examples = new ArrayList<>();
 
-        String sql = "SELECT example_id, title, snippet, languages.type, languages.id FROM examples " +
+        String sql = "SELECT example_id, title, snippet, languages.type, languages.id, description FROM examples " +
                 "JOIN languages ON languages.id = examples.language_id;";
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
@@ -40,9 +40,9 @@ public class JdbcExampleDAO implements ExampleDAO {
     @Override
     public Example addExample(Example example) {
 
-        String sql = "INSERT INTO examples (example_id, title, snippet, language_id) VALUES (DEFAULT, ?, ?, (SELECT id FROM languages WHERE type = ?)) RETURNING example_id";
+        String sql = "INSERT INTO examples (example_id, title, snippet, language_id, description) VALUES (DEFAULT, ?, ?, (SELECT id FROM languages WHERE type = ?), ?) RETURNING example_id";
 
-        Integer exampleId = jdbcTemplate.queryForObject(sql, Integer.class, example.getTitle(), example.getSnippet(), example.getLanguageType());
+        Integer exampleId = jdbcTemplate.queryForObject(sql, Integer.class, example.getTitle(), example.getSnippet(), example.getLanguageType(), example.getDescription());
 
         example.setExampleID(exampleId);
         tagDAO.insertTagsForExample(example);
@@ -58,6 +58,7 @@ public class JdbcExampleDAO implements ExampleDAO {
         example.setSnippet(row.getString("snippet"));
         example.setLanguageType(row.getString("type"));
         example.setLanguageId(row.getInt("id"));
+        example.setDescription(row.getString("description"));
 
 
         return example;

@@ -7,11 +7,24 @@
           v-if="$store.state.token !== ''"
       >Logout
       </router-link
-      >
+      >&nbsp;|&nbsp;
+      <router-link v-if="isAdmin" v-bind:to="{ name: 'language' }">
+        Edit Languages
+      </router-link>
     </div>
     <router-view />
   </div>
 </template>
+
+<script>
+export default {
+  computed: {
+    isAdmin() {
+      return (this.$store.state.token !== '') && (this.$store.state.user.authorities[0].name === 'ROLE_ADMIN');
+    }
+  }
+}
+</script>
 
 <style>
 html {

@@ -7,6 +7,7 @@
     <div>
       <pre><code>{{ example.snippet }}</code></pre>
     </div>
+      <p>{{ example.description }}</p>
   </div>
 </template>
 

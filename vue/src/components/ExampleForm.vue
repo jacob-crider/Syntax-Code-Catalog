@@ -12,6 +12,11 @@
       </div>
 
       <div>
+        <label for="description">Description and Reference</label>
+        <textarea id="description" v-model="example.description"></textarea>
+      </div>
+
+      <div>
         <label for="languageType">Language</label>
         <select v-model="example.languageType">
           <option value="">Show All</option>
@@ -47,6 +52,7 @@ export default {
         title: "",
         snippet: "",
         languageType: "",
+        description: "",
         tagList: [],
       },
       languages: [],

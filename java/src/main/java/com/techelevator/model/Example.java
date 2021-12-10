@@ -11,6 +11,15 @@ public class Example {
     private String languageType;
     private Integer languageId;
     private List<Tag> tagList;
+    private String description;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public List<Tag> getTagList() {
         return tagList;
@@ -65,11 +74,11 @@ public class Example {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Example example = (Example) o;
-        return exampleID == example.exampleID && Objects.equals(title, example.title) && Objects.equals(snippet, example.snippet) && Objects.equals(languageType, example.languageType) && Objects.equals(languageId, example.languageId) && Objects.equals(tagList, example.tagList);
+        return exampleID == example.exampleID && Objects.equals(title, example.title) && Objects.equals(snippet, example.snippet) && Objects.equals(languageType, example.languageType) && Objects.equals(languageId, example.languageId) && Objects.equals(tagList, example.tagList) && Objects.equals(description, example.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(exampleID, title, snippet, languageType, languageId, tagList);
+        return Objects.hash(exampleID, title, snippet, languageType, languageId, tagList, description);
     }
 }
