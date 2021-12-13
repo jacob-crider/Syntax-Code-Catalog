@@ -7,14 +7,14 @@
         <img class="copy" src="copy.png" />
       </button>
     </div>
-    <p v-if="example.tagList.length !== 0">
+    <p>
       Tags:
       <span class="tag" v-for="tag in example.tagList" v-bind:key="tag.id">{{
         tag.name
       }}</span>
     </p>
     <div>
-      <pre><code>{{ example.snippet }}</code></pre>
+      <code-highlight>{{ example.snippet }}</code-highlight>
       <button @click.prevent="emailForm = true">Share via Email</button>
       <email-snippet v-if="emailForm" v-bind:example="example"></email-snippet>
     </div>
@@ -26,7 +26,8 @@
 </template>
 
 <script>
-import hljs from "highlight.js/lib/common";
+import { component as CodeHighlight } from 'vue-code-highlight';
+import 'vue-code-highlight/themes/prism-okaidia.css';
 import EditExampleForm from "./EditExampleForm.vue";
 import EmailSnippet from "./EmailSnippet.vue";
 
@@ -34,11 +35,9 @@ export default {
   name: "example",
   props: ["example"],
   components: {
+    CodeHighlight,
     EditExampleForm,
     EmailSnippet,
-  },
-  mounted() {
-    hljs.highlightAll();
   },
   computed: {
     isAdmin() {
