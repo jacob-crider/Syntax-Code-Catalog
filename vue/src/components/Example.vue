@@ -1,22 +1,22 @@
 <template>
   <div class="card">
-    <h2>{{ example.title }}</h2>
-    <p>{{ example.languageType }}</p>
-    <div class="copy-div">
-      <button @click.prevent="copyToClipBoard(example.snippet)">
-        <img class="copy" src="copy.png" />
-      </button>
-    </div>
-    <p>
+    <p class="tags">
       Tags:
       <span class="tag" v-for="tag in example.tagList" v-bind:key="tag.id">{{
         tag.name
       }}</span>
     </p>
+    <h2>{{ example.title }}</h2>
+     <div class="copy-div">
+      <button @click.prevent="copyToClipBoard(example.snippet)">
+        <img class="copy" src="copy.png" />
+      </button>
+    </div>
+    <p>{{ example.languageType }}</p>
     <div>
       <code-highlight>{{ example.snippet }}</code-highlight>
-      <button @click.prevent="emailForm = true">Share via Email</button>
-      <email-snippet v-if="emailForm" v-bind:example="example"></email-snippet>
+      <button @click.prevent="toggle = !toggle">Share via Email</button>
+      <email-snippet v-if="toggle" v-bind:example="example"></email-snippet>
     </div>
     <p>{{ example.description }}</p>
     <button @click.prevent="showForm = true" v-if="isAdmin">Edit</button>
@@ -50,7 +50,7 @@ export default {
   data() {
     return {
       showForm: false,
-      emailForm: false,
+      toggle: false,
     };
   },
   methods: {
@@ -66,7 +66,7 @@ export default {
 div.card {
   margin: 20px 0;
   padding: 16px;
-  background-color: lightblue;
+  background-color: #5450D8;
   border-radius: 4px;
 }
 
@@ -88,6 +88,10 @@ span.tag:last-child {
 }
 
 .copy-div {
+  float: right;
+}
+
+p.tags {
   float: right;
 }
 </style>
