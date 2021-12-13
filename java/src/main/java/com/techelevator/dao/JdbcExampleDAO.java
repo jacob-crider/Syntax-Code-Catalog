@@ -24,7 +24,7 @@ public class JdbcExampleDAO implements ExampleDAO {
     public List<Example> getAllExamples() {
         List<Example> examples = new ArrayList<>();
 
-        String sql = "SELECT example_id, title, snippet, languages.type, languages.id, description, is_public, username FROM examples " +
+        String sql = "SELECT example_id, title, snippet, languages.type, languages.id, description, is_public, username, image_url FROM examples " +
                 "JOIN languages ON languages.id = examples.language_id;";
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
@@ -40,9 +40,9 @@ public class JdbcExampleDAO implements ExampleDAO {
     @Override
     public Example addExample(Example example, String username) {
 
-        String sql = "INSERT INTO examples (example_id, title, snippet, language_id, description, username) VALUES (DEFAULT, ?, ?, (SELECT id FROM languages WHERE type = ?), ?, ?) RETURNING example_id";
+        String sql = "INSERT INTO examples (example_id, title, snippet, language_id, description, username, image_url) VALUES (DEFAULT, ?, ?, (SELECT id FROM languages WHERE type = ?), ?, ?, ?) RETURNING example_id";
 
-        Integer exampleId = jdbcTemplate.queryForObject(sql, Integer.class, example.getTitle(), example.getSnippet(), example.getLanguageType(), example.getDescription(), username);
+        Integer exampleId = jdbcTemplate.queryForObject(sql, Integer.class, example.getTitle(), example.getSnippet(), example.getLanguageType(), example.getDescription(), username, example.getImageUrl());
 
         example.setExampleID(exampleId);
         tagDAO.insertTagsForExample(example);
@@ -52,9 +52,9 @@ public class JdbcExampleDAO implements ExampleDAO {
 
     @Override
     public boolean updateExample(Example example) {
-        String sql = "UPDATE examples SET title = ?, snippet = ?, language_id = ?, description = ?, is_public = ? WHERE example_id = ?";
+        String sql = "UPDATE examples SET title = ?, snippet = ?, language_id = ?, description = ?, is_public = ?, image_url = ? WHERE example_id = ?";
 
-        int rowCount = jdbcTemplate.update(sql, example.getTitle(), example.getSnippet(), example.getLanguageId(), example.getDescription(), example.isPublic(), example.getExampleID());
+        int rowCount = jdbcTemplate.update(sql, example.getTitle(), example.getSnippet(), example.getLanguageId(), example.getDescription(), example.isPublic(), example.getImageUrl(), example.getExampleID());
         tagDAO.replaceTags(example);
 
         return rowCount > 0;
@@ -70,6 +70,7 @@ public class JdbcExampleDAO implements ExampleDAO {
         example.setDescription(row.getString("description"));
         example.setPublic(row.getBoolean("is_public"));
         example.setUsername(row.getString("username"));
+        example.setImageUrl(row.getString("image_url"));
 
         return example;
     }
