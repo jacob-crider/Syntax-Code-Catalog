@@ -2,42 +2,64 @@
   <div class="card">
     <h2>{{ example.title }}</h2>
     <p>{{ example.languageType }}</p>
-    <p v-if="example.tagList.length !== 0">Tags: <span class="tag" v-for="tag in example.tagList"
-        v-bind:key="tag.id">{{ tag.name }}</span></p>
+    <div class="copy-div">
+      <button @click.prevent="copyToClipBoard(example.snippet)">
+        <img class="copy" src="copy.png" />
+      </button>
+    </div>
+    <p v-if="example.tagList.length !== 0">
+      Tags:
+      <span class="tag" v-for="tag in example.tagList" v-bind:key="tag.id">{{
+        tag.name
+      }}</span>
+    </p>
     <div>
       <pre><code>{{ example.snippet }}</code></pre>
+      <button @click.prevent="emailForm = true">Share via Email</button>
+      <email-snippet v-if="emailForm" v-bind:example="example"></email-snippet>
     </div>
-      <p>{{ example.description }}</p>
-      <button @click.prevent="showForm = true" v-if="isAdmin">Edit</button>
-      
-      <edit-example-form v-if="showForm" v-bind:example="example" />
-      
+    <p>{{ example.description }}</p>
+    <button @click.prevent="showForm = true" v-if="isAdmin">Edit</button>
+
+    <edit-example-form v-if="showForm" v-bind:example="example" />
   </div>
 </template>
 
 <script>
-import hljs from 'highlight.js/lib/common';
-import EditExampleForm from './EditExampleForm.vue'
+import hljs from "highlight.js/lib/common";
+import EditExampleForm from "./EditExampleForm.vue";
+import EmailSnippet from "./EmailSnippet.vue";
 
 export default {
-  name: 'example',
-  props: ['example'],
+  name: "example",
+  props: ["example"],
   components: {
-    EditExampleForm
+    EditExampleForm,
+    EmailSnippet,
   },
   mounted() {
     hljs.highlightAll();
   },
   computed: {
     isAdmin() {
-      return (this.$store.state.token !== '') && (this.$store.state.user.authorities[0].name === 'ROLE_ADMIN');
-    }
+      return (
+        this.$store.state.token !== "" &&
+        this.$store.state.user.authorities[0].name === "ROLE_ADMIN"
+      );
+    },
   },
   data() {
     return {
-      showForm: false
-    }
-  }
+      showForm: false,
+      emailForm: false,
+    };
+  },
+  methods: {
+    copyToClipBoard(snippet) {
+      navigator.clipboard.writeText(snippet);
+      alert("Copied Snippet");
+    },
+  },
 };
 </script>
 
@@ -56,5 +78,17 @@ span.tag {
 
 span.tag:last-child {
   border-right: none;
+}
+
+.copy {
+  width: 20px;
+  height: 20px;
+  align-content: right;
+  border-radius: 8px;
+  padding: 0px;
+}
+
+.copy-div {
+  float: right;
 }
 </style>
