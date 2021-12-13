@@ -12,7 +12,6 @@
       >
         Thank you for registering, please sign in.
       </div>
-      <div>
         <div class="login">
           <div class="form-inputs">
             <label for="username" class="sr-only">Username</label>
@@ -40,14 +39,12 @@
 
           <div class="register-link">
             <router-link :to="{ name: 'register' }"
-              >Need an account?</router-link
-            >
+              >Need an account?</router-link>
           </div>
           <div class="submit-form">
             <button type="submit">Sign in</button>
           </div>
         </div>
-      </div>
     </form>
   </div>
 </template>
@@ -90,20 +87,31 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 h1 {
   text-align: center;
+  color: #BC80EC;
 }
 
 div.login {
-  width: 40%;
-
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+  width: 480px;
+  background-color: #5450D8;
+  margin: auto;
   text-align: center;
+  border-radius: 4px;
+  padding: 32px;
 }
 
 div.form-inputs {
+  margin: 32px;
+  line-height: 1.5;
+}
+
+div.submit-form {
+  margin: 16px;
+}
+
+label {
+  padding-right: 4px;
 }
 </style>

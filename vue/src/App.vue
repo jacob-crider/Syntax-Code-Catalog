@@ -66,4 +66,8 @@ button:hover {
 div.menu{
   float: right;
 }
+
+a {
+  color: #BC80EC;
+}
 </style>
