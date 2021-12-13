@@ -16,6 +16,14 @@ public class Example {
     private String username;
     private String imageUrl;
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
     public boolean isPublic() {
         return isPublic;
     }
@@ -93,11 +101,11 @@ public class Example {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Example example = (Example) o;
-        return exampleID == example.exampleID && isPublic == example.isPublic && Objects.equals(title, example.title) && Objects.equals(snippet, example.snippet) && Objects.equals(languageType, example.languageType) && Objects.equals(languageId, example.languageId) && Objects.equals(tagList, example.tagList) && Objects.equals(description, example.description) && Objects.equals(username, example.username);
+        return exampleID == example.exampleID && isPublic == example.isPublic && Objects.equals(title, example.title) && Objects.equals(snippet, example.snippet) && Objects.equals(languageType, example.languageType) && Objects.equals(languageId, example.languageId) && Objects.equals(tagList, example.tagList) && Objects.equals(description, example.description) && Objects.equals(username, example.username) && Objects.equals(imageUrl, example.imageUrl);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(exampleID, title, snippet, languageType, languageId, tagList, description, isPublic, username);
+        return Objects.hash(exampleID, title, snippet, languageType, languageId, tagList, description, isPublic, username, imageUrl);
     }
 }

@@ -24,8 +24,7 @@ export default {
       sender_name: '',
       sender_email: '',
       receiver_name: '',
-      message: `${this.example.title} \n ${this.example.languageType} \n
-      ${this.example.snippet}`,
+      message: `${this.example.title} \n ${this.example.languageType} \n ${this.example.snippet}`,
       displayMessage: false
     }
   },
