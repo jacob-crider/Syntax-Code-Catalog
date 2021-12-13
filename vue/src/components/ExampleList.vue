@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="example-list">
     <div class="filter-form">
       <router-link tag="button" to="/addExample">Add Snippet</router-link>
       <div class="filters">
@@ -107,5 +107,10 @@ div.filter-form {
   background-color: #5450d8;
   border-radius: 4px;
   padding: 16px;
+}
+
+div.example-list{
+  width: 80%;
+  margin: auto;
 }
 </style>

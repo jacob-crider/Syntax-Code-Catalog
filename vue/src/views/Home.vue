@@ -1,8 +1,5 @@
 <template>
   <div class="home">
-    <h1 class="title">Code Snippets</h1>
-    <p class="title">Code your heart away!</p>
-    
     <example-list />
   </div>
 </template>
