@@ -17,13 +17,13 @@
       </div>
 
       <div>
-        <label for="languageType">Language</label>
-        <select v-model="example.languageType">
+        <label for="language-type">Language</label>
+        <select id="language-type" v-model="example.languageType">
           <option value="">Show All</option>
           <option
-            v-for="language in languages"
-            v-bind:key="language.id"
-            v-bind:value="language.type"
+              v-for="language in languages"
+              v-bind:key="language.id"
+              v-bind:value="language.type"
           >
             {{ language.type }}
           </option>
@@ -31,10 +31,15 @@
       </div>
 
       <div>
-        <span>Tags:</span>
-
-        <input type="text" v-model="tag" />
+        <label for="language-tags">Tags:</label>
+        <input type="text" id="language-tags" v-model="tag" />
       </div>
+
+      <div>
+        <img :src="example.imageUrl" alt="Upload an image..." />
+      </div>
+
+      <button @click.prevent="uploadImage">Upload Image</button>
 
       <button @click.prevent="addExample">Submit</button>
     </form>
@@ -42,58 +47,64 @@
 </template>
 
 <script>
-import exampleService from "../services/ExampleService";
-import languageService from "../services/LanguageService";
+import exampleService from '../services/ExampleService';
+import languageService from '../services/LanguageService';
 
 export default {
   name: 'AddExampleForm',
   data() {
     return {
       example: {
-        title: "",
-        snippet: "",
-        languageType: "",
-        description: "",
+        title: '',
+        snippet: '',
+        languageType: '',
+        description: '',
+        imageUrl: '',
         tagList: [],
       },
       languages: [],
-      tag: "",
+      tag: '',
     };
   },
   methods: {
     addExample() {
-      if (this.tag != '') {
-       let arrayOfTags = this.tag.split(" ");
-       this.example.tagList = arrayOfTags.map(tag => ({
-           name: tag
-       }));
+      if (this.tag !== '') {
+        let arrayOfTags = this.tag.split(' ');
+        this.example.tagList = arrayOfTags.map(tag => ({
+          name: tag,
+        }));
       }
-      exampleService
-        .addExample(this.example)
-        .then((response) => {
-          if (response.status == 201) {
-            this.$router.push("/");
-          }
-        })
-        .catch((error) => {
-          if (error.response.status == 400) {
-            // TODO: Route user to error page
-            console.error(error);
-          } else {
-            console.error(error);
-          }
-        });
+      exampleService.addExample(this.example).then((response) => {
+        if (response.status === 201) {
+          this.$router.push('/');
+        }
+      }).catch((error) => {
+        if (error.response.status === 400) {
+          // TODO: Route user to error page
+          console.error(error);
+        } else {
+          console.error(error);
+        }
+      });
+    },
+    uploadImage() {
+      window.cloudinary.openUploadWidget({
+        cloudName: 'syntax-image',
+        uploadPreset: 'fo0weqjc',
+        sources: ['local', 'url'],
+      }, (error, result) => {
+        if (!error && result?.event === 'success') {
+          this.example.imageUrl = result.info.secure_url;
+        }
+      });
     },
   },
   created() {
-    languageService
-      .getAllLanguages()
-      .then((response) => {
-        this.languages = response.data.filter((language) => !language.deleted);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    languageService.getAllLanguages().then((response) => {
+      this.languages = response.data.filter((language) => !language.deleted);
+    }).catch((error) => {
+      console.error(error);
+    });
   },
 };
 </script>
@@ -118,5 +129,9 @@ span {
   width: 10ch;
   text-align: right;
   padding-right: 4px;
+}
+
+img {
+  height: 100px;
 }
 </style>

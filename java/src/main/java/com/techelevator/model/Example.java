@@ -14,6 +14,7 @@ public class Example {
     private String description;
     private boolean isPublic;
     private String username;
+    private String imageUrl;
 
     public boolean isPublic() {
         return isPublic;
