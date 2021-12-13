@@ -9,7 +9,7 @@
     <label>Receiver Email</label>
     <input type="email" name="receiver_email" v-model="receiver_email">
     <textarea name="message" id="" cols="30" rows="10" v-model="message" v-show="displayMessage"></textarea>
-    <input type="submit" value="Send">
+    <input type="submit" value="Send" >
   </form>
 </template>
 

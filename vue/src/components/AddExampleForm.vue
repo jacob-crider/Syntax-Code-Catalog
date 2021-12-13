@@ -38,6 +38,21 @@
 
       <button @click.prevent="addExample">Submit</button>
     </form>
+    <iframe
+      src="
+https://codesandbox.io/embed/solitary-water-ys3iu?fontsize=14&hidenavigation=1&theme=dark
+"
+      style="
+        width: 100%;
+        height: 500px;
+        border: 0;
+        border-radius: 4px;
+        overflow: hidden;
+      "
+      title="solitary-water-ys3iu"
+      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+    ></iframe>
   </div>
 </template>
 
@@ -46,7 +61,7 @@ import exampleService from "../services/ExampleService";
 import languageService from "../services/LanguageService";
 
 export default {
-  name: 'AddExampleForm',
+  name: "AddExampleForm",
   data() {
     return {
       example: {
@@ -62,11 +77,11 @@ export default {
   },
   methods: {
     addExample() {
-      if (this.tag != '') {
-       let arrayOfTags = this.tag.split(" ");
-       this.example.tagList = arrayOfTags.map(tag => ({
-           name: tag
-       }));
+      if (this.tag != "") {
+        let arrayOfTags = this.tag.split(" ");
+        this.example.tagList = arrayOfTags.map((tag) => ({
+          name: tag,
+        }));
       }
       exampleService
         .addExample(this.example)

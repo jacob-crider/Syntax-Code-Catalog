@@ -30,6 +30,8 @@ export default {
 html {
   font-family: "Roboto", sans-serif;
   box-sizing: border-box;
+  background-color: rgba(44, 41, 37);
+  color: #BC80EC ;
 }
 
 *, *:before, *:after {
@@ -39,5 +41,17 @@ html {
 div#app {
   width: 1000px;
   margin: auto;
+}
+
+button {
+  padding: 4px;
+  background-color: #BC80EC;
+  border: none;
+  border-radius: 2px;
+}
+
+button:hover {
+  box-shadow: 1px 2px 1px black;
+  cursor: pointer;
 }
 </style>
