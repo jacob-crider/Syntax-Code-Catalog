@@ -2,6 +2,9 @@
   <div class="card">
     <h2>{{ example.title }}</h2>
     <p>{{ example.languageType }}</p>
+    <div class="copy-div">
+      <button @click.prevent="copyToClipBoard(example.snippet)"><img class="copy" src="copy.png"></button>
+    </div>
     <p v-if="example.tagList.length !== 0">Tags: <span class="tag" v-for="tag in example.tagList"
         v-bind:key="tag.id">{{ tag.name }}</span></p>
     <div>
@@ -33,6 +36,12 @@ export default {
       return (this.$store.state.token !== '') && (this.$store.state.user.authorities[0].name === 'ROLE_ADMIN');
     }
   },
+  methods: {
+    copyToClipBoard(snippet) {
+      navigator.clipboard.writeText(snippet);
+      alert('Copied Snippet');
+    }
+  },
   data() {
     return {
       showForm: false
@@ -56,5 +65,17 @@ span.tag {
 
 span.tag:last-child {
   border-right: none;
+}
+
+.copy {
+  width: 20px;
+  height: 20px;
+  align-content: right;
+  border-radius: 8px;
+  padding: 0px;
+}
+
+.copy-div {
+  float: right;
 }
 </style>
