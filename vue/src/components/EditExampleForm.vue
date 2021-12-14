@@ -36,6 +36,18 @@
         <input type="text" v-model="tag" />
       </div>
 
+      <div class="snippet-input">
+        <img
+            v-if="editedExample.imageUrl !== ''"
+            :src="editedExample.imageUrl"
+            alt="Upload an image..."
+        />
+      </div>
+
+      <div class="upload-button">
+        <button @click.prevent="uploadImage">Upload Image</button>
+      </div>
+
       <button @click.prevent="updateExample">Submit</button>
     </form>
   </div>
@@ -55,6 +67,7 @@ export default {
         snippet: '',
         languageType: '',
         description: '',
+        imageUrl: '',
         tagList: [],
       },
       languages: [],
@@ -63,7 +76,7 @@ export default {
   },
   methods: {
     updateExample() {
-      if (this.tag != '') {
+      if (this.tag !== '') {
        let arrayOfTags = this.tag.split(" ");
        this.editedExample.tagList = arrayOfTags.map(tag => ({
            name: tag
@@ -85,6 +98,20 @@ export default {
           }
         });
     },
+    uploadImage() {
+      window.cloudinary.openUploadWidget(
+          {
+            cloudName: "syntax-image",
+            uploadPreset: "fo0weqjc",
+            sources: ["local", "url"],
+          },
+          (error, result) => {
+            if (!error && result?.event === "success") {
+              this.editedExample.imageUrl = result.info.secure_url;
+            }
+          }
+      );
+    },
   },
   created() {
     languageService
@@ -95,13 +122,13 @@ export default {
       .catch((error) => {
         console.error(error);
       });
-    
+
     this.editedExample = {...this.example};
     this.tag = this.example.tagList.map(tag => {
       return tag.name
     }).join(' ');
   },
-  
+
 };
 </script>
 
@@ -125,5 +152,10 @@ span {
   width: 10ch;
   text-align: right;
   padding-right: 4px;
+}
+
+div.snippet-input img {
+  height: 100px;
+  margin: 16px 0;
 }
 </style>

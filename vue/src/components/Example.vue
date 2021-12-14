@@ -14,19 +14,14 @@
     </div>
     <p>{{ example.languageType }}</p>
 
-    <div class="copy-div">
-      <button @click.prevent="copyToClipBoard(example.snippet)"><img class="copy" src="copy.png"></button>
-    </div>
-    <p v-if="example.tagList.length !== 0">Tags: <span class="tag" v-for="tag in example.tagList"
-        v-bind:key="tag.id">{{ tag.name }}</span></p>
-
-    <div>
-      <code-highlight>{{ example.snippet }}</code-highlight>
-      <button @click.prevent="toggle = !toggle">Share via Email</button>
-      <email-snippet v-if="toggle" v-bind:example="example"></email-snippet>
-    </div>
+    <code-highlight>{{ example.snippet }}</code-highlight>
+    <img class="diagram" v-if="example.imageUrl !== null" :src="example.imageUrl" alt="snippet image" />
     <p>{{ example.description }}</p>
-    <button @click.prevent="showForm = true" v-if="isAdmin">Edit</button>
+    <button @click.prevent="toggle = !toggle">Share via Email</button>
+    <email-snippet v-if="toggle" v-bind:example="example"></email-snippet>
+    <div>
+      <button id="edit-button" @click.prevent="showForm = true" v-if="isAdmin">Edit</button>
+    </div>
 
     <edit-example-form v-if="showForm" v-bind:example="example" />
   </div>
@@ -100,5 +95,15 @@ span.tag:last-child {
 
 p.tags {
   float: right;
+}
+
+img.diagram {
+  display: block;
+  height: 200px;
+  margin: 16px 0;
+}
+
+#edit-button {
+  margin: 16px 0;
 }
 </style>
