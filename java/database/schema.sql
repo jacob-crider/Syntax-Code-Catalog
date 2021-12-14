@@ -3,8 +3,8 @@ BEGIN TRANSACTION;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS example_tag;
 DROP TABLE IF EXISTS tags;
-DROP TABLE IF EXISTS examples;
 DROP TABLE IF EXISTS comments;
+DROP TABLE IF EXISTS examples;
 DROP TABLE IF EXISTS languages;
 DROP SEQUENCE IF EXISTS seq_user_id;
 
@@ -60,9 +60,10 @@ CREATE TABLE example_tag (
 );
 
 CREATE TABLE comments (
-        id BIGINT,
+        id SERIAL PRIMARY KEY,
         description VARCHAR(1500),
         example_comment_id BIGINT,
+        username VARCHAR(50),
         
         constraint fk_example_comment_id FOREIGN KEY (example_comment_id) REFERENCES examples(example_id) 
 
