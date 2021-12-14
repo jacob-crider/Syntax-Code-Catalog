@@ -1,7 +1,7 @@
 <template>
   <div>
-      <span>{{comment.username}}</span>
-      <p>{{comment.description}}</p>
+      <span class="username">{{comment.username}}</span>
+      <span>{{comment.description}}</span>
   </div>
 </template>
 
@@ -13,5 +13,7 @@ export default {
 </script>
 
 <style>
-
+    .username {
+        margin: 8px;
+    }
 </style>

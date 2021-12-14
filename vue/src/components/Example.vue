@@ -24,6 +24,7 @@
     </div>
 
     <edit-example-form v-if="showForm" v-bind:example="example" />
+    <comment-list v-bind:example="example"/>
   </div>
 </template>
 
@@ -32,6 +33,7 @@ import { component as CodeHighlight } from 'vue-code-highlight';
 import 'vue-code-highlight/themes/prism-okaidia.css';
 import EditExampleForm from "./EditExampleForm.vue";
 import EmailSnippet from "./EmailSnippet.vue";
+import CommentList from './CommentList.vue'
 
 export default {
   name: "example",
@@ -40,6 +42,7 @@ export default {
     CodeHighlight,
     EditExampleForm,
     EmailSnippet,
+    CommentList
   },
   computed: {
     isAdmin() {
