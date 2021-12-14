@@ -66,12 +66,6 @@ export default {
       toggle: false,
     };
   },
-  methods: {
-    copyToClipBoard(snippet) {
-      navigator.clipboard.writeText(snippet);
-      alert("Copied Snippet");
-    },
-  },
 };
 </script>
 
