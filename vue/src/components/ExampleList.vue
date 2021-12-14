@@ -1,7 +1,7 @@
 <template>
   <div class="example-list">
     <div class="filter-form">
-      <router-link tag="button" to="/addExample">Add Snippet</router-link>
+      <router-link tag="button" to="/addExample">ADD SNIPPET</router-link>
       <div class="filters">
         <input
           placeholder="Filter by title"
@@ -28,11 +28,13 @@
       </div>
     </div>
 
-    <example
-      v-for="example in filteredList"
-      v-bind:example="example"
-      v-bind:key="example.example_id"
-    />
+    <div class="container">
+      <example
+          v-for="example in filteredList"
+          v-bind:example="example"
+          v-bind:key="example.example_id"
+      />
+    </div>
   </div>
 </template>
 
@@ -98,19 +100,26 @@ export default {
 </script>
 
 <style scoped>
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
 div.filters {
   display: inline-block;
-  margin: 5px;
+  margin: 0 8px;
 }
 
 div.filter-form {
-  background-color: #5450d8;
+  width: fit-content;
+  margin: auto;
+  background-color: var(--form-dark);
   border-radius: 4px;
-  padding: 16px;
+  padding: 16px 8px;
 }
 
-div.example-list{
-  width: 80%;
-  margin: auto;
+button {
+  margin: 0 8px;
 }
 </style>

@@ -99,16 +99,16 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 
 h1 {
   text-align: center;
-  color: #BC80EC;
+  color: var(--text-dark);
 }
 
 div.register-form {
   width: 480px;
-  background-color: #5450D8;
+  background-color: var(--form-dark);
   margin: auto;
   text-align: center;
   border-radius: 4px;
@@ -129,7 +129,8 @@ label {
 }
 
 #confirmPassword {
-  margin-left: 75px;
+  margin-top: 2px;
+  margin-left: 80px;
 }
 
 </style>
