@@ -12,18 +12,18 @@
       </div>
 
       <div>
-        <label for="description">Description and Reference</label>
+        <label for="description">Description</label>
         <textarea id="description" v-model="editedExample.description"></textarea>
       </div>
 
       <div>
-        <label for="languageType">Language</label>
-        <select v-model="editedExample.languageType">
+        <label for="language-type">Language</label>
+        <select id="language-type" v-model="editedExample.languageType">
           <option value="">Show All</option>
           <option
-            v-for="language in languages"
-            v-bind:key="language.id"
-            v-bind:value="language.type"
+              v-for="language in languages"
+              v-bind:key="language.id"
+              v-bind:value="language.type"
           >
             {{ language.type }}
           </option>
@@ -31,14 +31,14 @@
       </div>
 
       <div>
-        <span>Tags:</span>
-
-        <input type="text" v-model="tag" />
+        <label for="snippet-tags">Tags</label>
+        <input id="snippet-tags" type="text" v-model="tag" />
       </div>
 
-      <div class="snippet-input">
+      <div>
         <img
-            v-if="editedExample.imageUrl !== ''"
+            class="snippet-thumb"
+            v-if="editedExample.imageUrl !== null"
             :src="editedExample.imageUrl"
             alt="Upload an image..."
         />
@@ -54,8 +54,8 @@
 </template>
 
 <script>
-import exampleService from "../services/ExampleService";
-import languageService from "../services/LanguageService";
+import exampleService from '../services/ExampleService';
+import languageService from '../services/LanguageService';
 
 export default {
   name: 'EditExampleForm',
@@ -77,55 +77,49 @@ export default {
   methods: {
     updateExample() {
       if (this.tag !== '') {
-       let arrayOfTags = this.tag.split(" ");
-       this.editedExample.tagList = arrayOfTags.map(tag => ({
-           name: tag
-       }));
+        let arrayOfTags = this.tag.split(' ');
+        this.editedExample.tagList = arrayOfTags.map(tag => ({
+          name: tag,
+        }));
       }
-      exampleService
-        .updateExample(this.editedExample)
-        .then((response) => {
-          if (response.status === 200) {
-            this.$router.go(this.$router.currentRoute);
-          }
-        })
-        .catch((error) => {
-          if (error.response.status === 400) {
-            // TODO: Route user to error page
-            console.error(error);
-          } else {
-            console.error(error);
-          }
-        });
+      exampleService.updateExample(this.editedExample).then((response) => {
+        if (response.status === 200) {
+          this.$router.go(this.$router.currentRoute);
+        }
+      }).catch((error) => {
+        if (error.response.status === 400) {
+          // TODO: Route user to error page
+          console.error(error);
+        } else {
+          console.error(error);
+        }
+      });
     },
     uploadImage() {
       window.cloudinary.openUploadWidget(
           {
-            cloudName: "syntax-image",
-            uploadPreset: "fo0weqjc",
-            sources: ["local", "url"],
+            cloudName: 'syntax-image',
+            uploadPreset: 'fo0weqjc',
+            sources: ['local', 'url'],
           },
           (error, result) => {
-            if (!error && result?.event === "success") {
+            if (!error && result?.event === 'success') {
               this.editedExample.imageUrl = result.info.secure_url;
             }
-          }
+          },
       );
     },
   },
   created() {
-    languageService
-      .getAllLanguages()
-      .then((response) => {
-        this.languages = response.data.filter((language) => !language.deleted);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    languageService.getAllLanguages().then((response) => {
+      this.languages = response.data.filter((language) => !language.deleted);
+    }).catch((error) => {
+      console.error(error);
+    });
 
     this.editedExample = {...this.example};
     this.tag = this.example.tagList.map(tag => {
-      return tag.name
+      return tag.name;
     }).join(' ');
   },
 
@@ -133,33 +127,31 @@ export default {
 </script>
 
 <style scoped>
+form > div {
+  margin-top: 16px;
+}
+
 label {
-  display: inline-block;
-  vertical-align: top;
-  width: 10ch;
-  text-align: right;
-  padding-right: 4px;
+  display: block;
+}
+
+select {
+  border-radius: 4px;
+  padding: 6px;
 }
 
 textarea {
   height: 4rem;
   width: 60ch;
+  border-radius: 4px;
 }
 
-span {
-  display: inline-block;
-  vertical-align: top;
-  width: 10ch;
-  text-align: right;
-  padding-right: 4px;
-}
-
-div.snippet-input img {
+.snippet-thumb {
   height: 100px;
   margin: 16px 0;
 }
 
-div.upload-button {
+.upload-button {
   margin: 16px 0;
 }
 </style>

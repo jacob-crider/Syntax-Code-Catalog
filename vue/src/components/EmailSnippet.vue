@@ -9,7 +9,7 @@
     <label>Receiver Email</label>
     <input type="email" name="receiver_email" v-model="receiver_email">
     <textarea name="message" id="" cols="30" rows="10" v-model="message" v-show="displayMessage"></textarea>
-    <input type="submit" value="Send" >
+    <button type="submit">SEND</button>
   </form>
 </template>
 
@@ -19,7 +19,7 @@ import emailjs from "emailjs-com";
 export default {
   name: "emailsnippet",
   data() {
-    return {    
+    return {
       receiver_email: '',
       sender_name: '',
       sender_email: '',
@@ -45,18 +45,18 @@ export default {
 </script>
 
 <style scoped>
-* {
-  box-sizing: border-box;
-}
+/*.container {*/
+/*  display: block;*/
+/*  margin: auto;*/
+/*  text-align: center;*/
+/*  border-radius: 5px;*/
+/*  background-color: #f2f2f2;*/
+/*  padding: 20px;*/
+/*  width: 50%;*/
+/*}*/
 
-.container {
-  display: block;
-  margin: auto;
-  text-align: center;
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
-  width: 50%;
+form {
+  margin-top: 16px;
 }
 
 label {
@@ -67,25 +67,8 @@ input[type="text"],
 [type="email"],
 textarea {
   width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
   margin-top: 6px;
   margin-bottom: 16px;
   resize: vertical;
-}
-
-input[type="submit"] {
-  background-color: #4caf50;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-input[type="submit"]:hover {
-  background-color: #45a049;
 }
 </style>

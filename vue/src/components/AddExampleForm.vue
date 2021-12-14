@@ -1,6 +1,7 @@
 <template>
-  <div class="snippet-form">
-    <form>
+  <div>
+    <h1>Add Example</h1>
+    <form class="snippet-form">
       <div class="snippet-input">
         <label for="title">Title</label>
         <input
@@ -148,7 +149,7 @@ export default {
 .snippet-form {
   width: 640px;
   margin: auto;
-  background-color: #5450d8;
+  background-color: var(--form-dark);
   padding: 32px;
   border-radius: 4px;
 }
@@ -156,6 +157,10 @@ export default {
 .snippet-input {
   margin: 32px 0;
   line-height: 1.5;
+}
+
+img {
+  height: 100px;
 }
 
 label {
@@ -169,6 +174,7 @@ label {
 textarea {
   height: 4rem;
   width: 60ch;
+  border-radius: 4px;
 }
 
 span {
@@ -179,8 +185,9 @@ span {
   padding-right: 4px;
 }
 
-img {
-  height: 100px;
+select {
+  border-radius: 4px;
+  padding: 6px;
 }
 
 .submit-button button {

@@ -6,16 +6,16 @@
         Invalid username and password!
       </div>
       <div
-        class="alert alert-success"
-        role="alert"
-        v-if="this.$route.query.registration"
+          class="alert alert-success"
+          role="alert"
+          v-if="this.$route.query.registration"
       >
         Thank you for registering, please sign in.
       </div>
-        <div class="login">
-          <div class="form-inputs">
-            <label for="username" class="sr-only">Username</label>
-            <input
+      <div class="login">
+        <div class="form-inputs">
+          <label for="username" class="sr-only">Username</label>
+          <input
               type="text"
               id="username"
               class="form-control"
@@ -23,65 +23,63 @@
               v-model="user.username"
               required
               autofocus
-            />
-          </div>
-          <div class="form-inputs">
-            <label for="password" class="sr-only">Password</label>
-            <input
+          />
+        </div>
+        <div class="form-inputs">
+          <label for="password" class="sr-only">Password</label>
+          <input
               type="password"
               id="password"
               class="form-control"
               placeholder="Password"
               v-model="user.password"
               required
-            />
-          </div>
-
-          <div class="register-link">
-            <router-link :to="{ name: 'register' }"
-              >Need an account?</router-link>
-          </div>
-          <div class="submit-form">
-            <button type="submit">Sign in</button>
-          </div>
+          />
         </div>
+
+        <div class="register-link">
+          <router-link :to="{ name: 'register' }"
+          >Need an account?
+          </router-link>
+        </div>
+        <div class="submit-form">
+          <button type="submit">Sign in</button>
+        </div>
+      </div>
     </form>
   </div>
 </template>
 
 <script>
-import authService from "../services/AuthService";
+import authService from '../services/AuthService';
 
 export default {
-  name: "login",
+  name: 'login',
   components: {},
   data() {
     return {
       user: {
-        username: "",
-        password: "",
+        username: '',
+        password: '',
       },
       invalidCredentials: false,
     };
   },
   methods: {
     login() {
-      authService
-        .login(this.user)
-        .then((response) => {
-          if (response.status == 200) {
-            this.$store.commit("SET_AUTH_TOKEN", response.data.token);
-            this.$store.commit("SET_USER", response.data.user);
-            this.$router.push("/");
-          }
-        })
-        .catch((error) => {
-          const response = error.response;
+      authService.login(this.user).then((response) => {
+        if (response.status === 200) {
+          this.$store.commit('SET_AUTH_TOKEN', response.data.token);
+          this.$store.commit('SET_USER', response.data.user);
+          this.$router.push('/');
+        }
+      }).catch((error) => {
+        const response = error.response;
 
-          if (response.status === 401) {
-            this.invalidCredentials = true;
-          }
-        });
+        if (response.status === 401) {
+          this.invalidCredentials = true;
+        }
+      });
     },
   },
 };
@@ -90,12 +88,12 @@ export default {
 <style scoped>
 h1 {
   text-align: center;
-  color: #BC80EC;
+  color: var(--text-dark);
 }
 
 div.login {
   width: 480px;
-  background-color: #5450D8;
+  background-color: var(--form-dark);
   margin: auto;
   text-align: center;
   border-radius: 4px;
