@@ -20,7 +20,7 @@
     <button @click.prevent="toggle = !toggle">Share via Email</button>
     <email-snippet v-if="toggle" v-bind:example="example"></email-snippet>
     <div>
-      <button id="edit-button" @click.prevent="showForm = true" v-if="isAdmin">Edit</button>
+      <button id="edit-button" @click.prevent="showForm = !showForm" v-if="isAdmin">Edit</button>
     </div>
 
     <edit-example-form v-if="showForm" v-bind:example="example" />
