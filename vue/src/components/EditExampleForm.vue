@@ -158,4 +158,8 @@ div.snippet-input img {
   height: 100px;
   margin: 16px 0;
 }
+
+div.upload-button {
+  margin: 16px 0;
+}
 </style>

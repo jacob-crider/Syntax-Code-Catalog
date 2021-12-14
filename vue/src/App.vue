@@ -36,20 +36,29 @@ html {
   color: #fafafa ;
 }
 
+h1, h2 {
+  text-align: center;
+  color: #BC80EC;
+}
+
 *, *:before, *:after {
   box-sizing: inherit;
 }
 
 button {
-  padding: 4px;
+  padding: 8px;
   background-color: #BC80EC;
   border: none;
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 button:hover {
-  box-shadow: 1px 2px 1px black;
+  box-shadow: 0 0 4px black;
   cursor: pointer;
+}
+
+input {
+  line-height: 1.5;
 }
 
 #logo-image {

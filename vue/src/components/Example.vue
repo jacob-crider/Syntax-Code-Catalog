@@ -65,6 +65,11 @@ export default {
 </script>
 
 <style scoped>
+h2 {
+  color: #fafafa;
+  text-align: left;
+}
+
 div.card {
   margin: 20px 0;
   padding: 16px;
@@ -81,16 +86,17 @@ span.tag:last-child {
   border-right: none;
 }
 
-.copy {
+img.copy {
   width: 20px;
   height: 20px;
-  align-content: right;
-  border-radius: 8px;
-  padding: 0px;
 }
 
 .copy-div {
   float: right;
+}
+
+.copy-div button {
+  padding: 2px;
 }
 
 p.tags {

@@ -110,7 +110,7 @@ div.filter-form {
 }
 
 div.example-list{
-  width: 80%;
+  max-width: 1024px;
   margin: auto;
 }
 </style>

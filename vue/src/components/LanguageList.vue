@@ -50,7 +50,7 @@ table {
   max-width: 480px;
   margin: auto;
   padding: 10px;
-  background-color: lightblue;
+  background-color: #5450d8;
   border-radius: 4px;
 }
 </style>
