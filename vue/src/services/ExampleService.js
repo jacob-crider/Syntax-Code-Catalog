@@ -9,5 +9,8 @@ export default {
     },
     updateExample(example) {
         return axios.put('/examples', example);
+    },
+    addComment(comment) {
+        return axios.post('/addComment', comment);
     }
 }

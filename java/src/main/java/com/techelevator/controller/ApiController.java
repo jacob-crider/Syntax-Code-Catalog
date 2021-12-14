@@ -1,8 +1,10 @@
 package com.techelevator.controller;
 
+import com.techelevator.dao.CommentDAO;
 import com.techelevator.dao.ExampleDAO;
 import com.techelevator.dao.LanguageDAO;
 import com.techelevator.exception.BadRequestException;
+import com.techelevator.model.Comment;
 import com.techelevator.model.Example;
 import com.techelevator.model.Language;
 import org.springframework.dao.DataAccessException;
@@ -20,10 +22,12 @@ public class ApiController {
 
     private ExampleDAO exampleDAO;
     private LanguageDAO languageDAO;
+    private CommentDAO commentDAO;
 
-    public ApiController(ExampleDAO exampleDAO, LanguageDAO languageDAO) {
+    public ApiController(ExampleDAO exampleDAO, LanguageDAO languageDAO, CommentDAO commentDAO) {
         this.exampleDAO = exampleDAO;
         this.languageDAO = languageDAO;
+        this.commentDAO = commentDAO;
     }
 
     @RequestMapping(path = "/examples", method = RequestMethod.GET)
@@ -81,4 +85,12 @@ public class ApiController {
         }
     }
 
+    @RequestMapping(path = "/addComment", method = RequestMethod.POST)
+    public void addComment(@RequestBody Comment comment, Principal principal) throws BadRequestException {
+        try {
+            commentDAO.addComment(comment, principal);
+        } catch (DataAccessException e) {
+            throw new BadRequestException();
+        }
+    }
 }
