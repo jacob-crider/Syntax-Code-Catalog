@@ -1,5 +1,6 @@
 package com.techelevator.dao;
 
+import com.techelevator.model.Comment;
 import com.techelevator.model.Example;
 import com.techelevator.model.Tag;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -14,10 +15,12 @@ public class JdbcExampleDAO implements ExampleDAO {
 
     private JdbcTemplate jdbcTemplate;
     private TagDAO tagDAO;
+    private CommentDAO commentDAO;
 
     public JdbcExampleDAO(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
         this.tagDAO = new JdbcTagDAO(jdbcTemplate);
+        this.commentDAO = new JdbcCommentDAO(jdbcTemplate);
     }
 
     @Override
@@ -32,6 +35,7 @@ public class JdbcExampleDAO implements ExampleDAO {
             Example example = mapRowToExample(results);
             List<Tag> tags = tagDAO.getTagsByExampleId(example);
             example.setTagList(tags);
+            example.setComments(commentDAO.getCommentsByExampleId(example.getExampleID()));
             examples.add(example);
         }
         return examples;

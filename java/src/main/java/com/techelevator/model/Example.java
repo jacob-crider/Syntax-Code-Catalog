@@ -15,6 +15,15 @@ public class Example {
     private boolean isPublic;
     private String username;
     private String imageUrl;
+    private List<Comment> comments;
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
 
     public String getImageUrl() {
         return imageUrl;
