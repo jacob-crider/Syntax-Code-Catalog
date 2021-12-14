@@ -97,7 +97,9 @@ export default {
       });
     
     this.editedExample = {...this.example};
-
+    this.tag = this.example.tagList.map(tag => {
+      return tag.name
+    }).join(' ');
   },
   
 };

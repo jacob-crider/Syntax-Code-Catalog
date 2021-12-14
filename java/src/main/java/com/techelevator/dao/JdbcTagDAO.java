@@ -61,6 +61,19 @@ public class JdbcTagDAO implements TagDAO {
         }
     }
 
+    @Override
+    public void removeTags(Example example) {
+        String sql = "DELETE FROM example_tag WHERE example_id = ?";
+
+        jdbcTemplate.update(sql, example.getExampleID());
+    }
+
+    @Override
+    public void replaceTags(Example example) {
+        removeTags(example);
+        insertTagsForExample(example);
+    }
+
     private List<Tag> getAllTags() {
         List<Tag> tags = new ArrayList<>();
         String sql = "SELECT id, name FROM tags";

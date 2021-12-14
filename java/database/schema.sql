@@ -39,7 +39,8 @@ CREATE TABLE examples (
         description VARCHAR(1000),
         username VARCHAR(64),
         is_public BOOLEAN DEFAULT FALSE,
-
+        image_url VARCHAR(150),
+        
         constraint fk_language_id foreign key (language_id) references languages(id)
 );
 

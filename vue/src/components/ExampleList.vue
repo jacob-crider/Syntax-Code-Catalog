@@ -1,16 +1,31 @@
 <template>
-  <div>
-    <div class="filters">
-      <label for="title">Filter by title</label>
-      <input v-model="filter.title" type="text" name="title" />
-    </div>
-    <div class="filters">
-      <label for="language">Filter by language</label>
-      <input v-model="filter.language" type="text" name="language" />
-    </div>
-    <div class="filters">
-      <label for="tag">Filter by tag</label>
-      <input v-model="filter.tag" type="text" name="tag" />
+  <div class="example-list">
+    <div class="filter-form">
+      <router-link tag="button" to="/addExample">Add Snippet</router-link>
+      <div class="filters">
+        <input
+          placeholder="Filter by title"
+          v-model="filter.title"
+          type="text"
+          name="title"
+        />
+      </div>
+      <div class="filters">
+        <input
+          placeholder="Filter by language"
+          v-model="filter.language"
+          type="text"
+          name="language"
+        />
+      </div>
+      <div class="filters">
+        <input
+          placeholder="Filter by tag"
+          v-model="filter.tag"
+          type="text"
+          name="tag"
+        />
+      </div>
     </div>
 
     <example
@@ -83,8 +98,19 @@ export default {
 </script>
 
 <style scoped>
-  div.filters {
-    display: inline-block;
-    margin: 5px;
-  }
+div.filters {
+  display: inline-block;
+  margin: 5px;
+}
+
+div.filter-form {
+  background-color: #5450d8;
+  border-radius: 4px;
+  padding: 16px;
+}
+
+div.example-list{
+  width: 80%;
+  margin: auto;
+}
 </style>

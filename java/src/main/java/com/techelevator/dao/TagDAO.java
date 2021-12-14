@@ -10,4 +10,8 @@ public interface TagDAO {
     List<Tag> getTagsByExampleId(Example example);
 
     void insertTagsForExample(Example example);
+
+    void removeTags(Example example);
+
+    void replaceTags(Example example);
 }

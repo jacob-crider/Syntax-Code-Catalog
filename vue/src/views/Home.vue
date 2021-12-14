@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+<<<<<<< HEAD
     <h1 class="title">Code Snippets</h1>
     <p class="title">Code your heart away!</p>
     <iframe src="https://codesandbox.io/embed/solitary-water-ys3iu?fontsize=14&hidenavigation=1&theme=dark"
@@ -9,6 +10,8 @@
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
     <router-link tag="button" to="/addExample">Add Snippet</router-link>
+=======
+>>>>>>> 7b3a844f17a3b290ca6018c4494205f27eed8a54
     <example-list />
   </div>
 </template>
