@@ -50,7 +50,7 @@ table {
   max-width: 480px;
   margin: auto;
   padding: 10px;
-  background-color: var(--form-dark);
+  background-color: var(--form-color);
   border-radius: 4px;
 }
 </style>

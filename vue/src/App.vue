@@ -11,9 +11,10 @@
         <router-link class="menu-item" v-if="isAdmin" v-bind:to="{ name: 'language' }">
           Edit Languages
         </router-link>
+        <a class="menu-item" @click.prevent="toggleTheme">Light</a>
       </div>
     </div>
-    <div id="spacer"/>
+    <div id="spacer" />
     <router-view />
   </div>
 </template>
@@ -25,31 +26,49 @@ export default {
       return (this.$store.state.token !== '') && (this.$store.state.user.authorities[0].name === 'ROLE_ADMIN');
     },
   },
+  methods: {
+    toggleTheme(event) {
+      if (event.target.textContent === 'Light') {
+        event.target.textContent ='Dark';
+      } else {
+        event.target.textContent ='Light';
+      }
+      document.querySelector('html').classList.toggle('dark');
+    }
+  }
 };
 </script>
 
 <style>
-:root {
-  --rich-black-fogra-29: #0d1b2aff;
-  --oxford-blue: #1b263bff;
-  --bdazzled-blue: #415a77ff;
-  --shadow-blue: #778da9ff;
-  --platinum: #e0e1ddff;
+html {
+  --rich-black-fogra-29: #0d1b2a;
+  --oxford-blue: #1b263b;
+  --bdazzled-blue: #415a77;
+  --shadow-blue: #778da9;
+  --platinum: #e0e1dd;
+  --violet: #e303ff;
 
-  --bg-dark: var(--rich-black-fogra-29);
-  --card-dark: var(--bdazzled-blue);
-  --form-dark: var(--bdazzled-blue);
-  --navbar-dark: var(--bdazzled-blue);
-  --button: var(--shadow-blue);
-  --input-dark: var(--platinum);
-  --text-dark: var(--platinum);
+  --bg-color: var(--platinum);
+  --card-color: var(--bdazzled-blue);
+  --form-color: var(--bdazzled-blue);
+  --navbar-color: var(--bdazzled-blue);
+  --button-color: var(--shadow-blue);
+  --input-color: var(--platinum);
+  --text-color: var(--platinum);
+  --link-color: var(--rich-black-fogra-29);
+  --accent: var(--violet);
+}
+
+.dark {
+  --bg-color: var(--rich-black-fogra-29);
+  --link-color: var(--platinum);
 }
 
 html {
   font-family: "Montserrat", sans-serif;
   box-sizing: border-box;
-  background-color: var(--bg-dark);
-  color: var(--text-dark);
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 *, *:before, *:after {
@@ -61,25 +80,26 @@ body {
 }
 
 h1, h2 {
-  color: violet;
+  color: var(--accent);
+  text-shadow: 1px 1px 2px black;
   font-weight: normal;
   text-align: center;
 }
 
 a {
-  color: var(--text-dark);
+  color: var(--link-color);
   text-decoration: none;
 }
 
 a:hover {
-  color: violet;
+  color: var(--accent);
   text-decoration: underline;
 }
 
 button {
   padding: 8px;
-  background-color: var(--button);
-  color: var(--text-dark);
+  background-color: var(--button-color);
+  color: var(--text-color);
   border: none;
   border-radius: 4px;
 }
@@ -93,7 +113,7 @@ input {
   line-height: 2;
   border-radius: 4px;
   border: 1px solid #cccccc;
-  background-color: var(--input-dark);
+  background-color: var(--input-color);
 }
 
 #spacer {
@@ -108,7 +128,7 @@ input {
   position: fixed;
   top: 0;
   left: 0;
-  background-color: var(--bg-dark);
+  background-color: var(--bg-color);
   width: 100%;
 }
 
@@ -118,7 +138,6 @@ input {
 
 .menu-item {
   padding: 0 16px;
-  border-radius: 4px;
   line-height: 3;
 }
 </style>

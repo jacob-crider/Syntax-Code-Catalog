@@ -149,7 +149,7 @@ export default {
 .snippet-form {
   width: 640px;
   margin: auto;
-  background-color: var(--form-dark);
+  background-color: var(--form-color);
   padding: 32px;
   border-radius: 4px;
 }

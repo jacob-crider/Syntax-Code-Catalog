@@ -103,12 +103,12 @@ export default {
 
 h1 {
   text-align: center;
-  color: var(--text-dark);
+  color: var(--text-color);
 }
 
 div.register-form {
   width: 480px;
-  background-color: var(--form-dark);
+  background-color: var(--form-color);
   margin: auto;
   text-align: center;
   border-radius: 4px;
