@@ -5,10 +5,13 @@
         <img id="logo-image" src="SYNTAXLight.png" alt="Logo">
       </router-link>
       <div class="menu">
+        <router-link class="menu-item" v-bind:to="{ name: 'home' }" v-if="$store.state.token !== ''">
+          Home
+        </router-link>
         <router-link class="menu-item" v-bind:to="{ name: 'logout' }" v-if="$store.state.token !== ''">
           Logout
         </router-link>
-        <router-link class="menu-item" v-bind:to="{ name: 'compiler' }">
+        <router-link class="menu-item" v-bind:to="{ name: 'compiler' }" v-if="$store.state.token !== ''">
           Compiler
         </router-link>
         <router-link class="menu-item" v-if="isAdmin" v-bind:to="{ name: 'language' }">
@@ -161,7 +164,7 @@ input, select, textarea {
 }
 
 .menu button {
-  background-color: var(--bdazzled-blue);
+  background-color: var(--card-color);
   margin: 0 8px;
 }
 </style>
