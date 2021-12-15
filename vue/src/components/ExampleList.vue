@@ -4,28 +4,29 @@
       <router-link tag="button" to="/addExample">ADD SNIPPET</router-link>
       <div class="filters">
         <input
-          placeholder="Filter by title"
-          v-model="filter.title"
-          type="text"
-          name="title"
+            placeholder="Filter by title"
+            v-model="filter.title"
+            type="text"
+            name="title"
         />
       </div>
       <div class="filters">
         <input
-          placeholder="Filter by language"
-          v-model="filter.language"
-          type="text"
-          name="language"
+            placeholder="Filter by language"
+            v-model="filter.language"
+            type="text"
+            name="language"
         />
       </div>
       <div class="filters">
         <input
-          placeholder="Filter by tag"
-          v-model="filter.tag"
-          type="text"
-          name="tag"
+            placeholder="Filter by tag"
+            v-model="filter.tag"
+            type="text"
+            name="tag"
         />
       </div>
+      <button @click.prevent="toggleTheme">GO DARK</button>
     </div>
 
     <div class="container">
@@ -39,53 +40,48 @@
 </template>
 
 <script>
-import exampleService from "../services/ExampleService";
-import Example from "./Example.vue";
+import exampleService from '../services/ExampleService';
+import Example from './Example.vue';
 
 export default {
-  components: { Example },
-  name: "ExampleList",
+  components: {Example},
+  name: 'ExampleList',
   data() {
     return {
       examples: [],
       filter: {
-        title: "",
-        language: "",
-        tag: "",
+        title: '',
+        language: '',
+        tag: '',
       },
     };
   },
   created() {
-    exampleService
-      .getAllExamples()
-      .then((response) => {
-        this.examples = response.data;
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    exampleService.getAllExamples().then((response) => {
+      this.examples = response.data;
+    }).catch((error) => {
+      console.error(error);
+    });
   },
   computed: {
     filteredList() {
       let filteredExamples = this.examples;
-      if (this.filter.title != "") {
+      if (this.filter.title !== '') {
         filteredExamples = filteredExamples.filter((example) =>
-          example.title.toLowerCase().includes(this.filter.title.toLowerCase())
+            example.title.toLowerCase().includes(this.filter.title.toLowerCase()),
         );
       }
-      if (this.filter.language != "") {
+      if (this.filter.language !== '') {
         filteredExamples = filteredExamples.filter((example) =>
-          example.languageType
-            .toLowerCase()
-            .includes(this.filter.language.toLowerCase())
+            example.languageType.toLowerCase().includes(this.filter.language.toLowerCase()),
         );
       }
-      if (this.filter.tag != "") {
+      if (this.filter.tag !== '') {
         filteredExamples = filteredExamples.filter((example) => {
           let isFound = false;
           example.tagList.forEach((element) => {
             if (
-              element.name.toLowerCase().includes(this.filter.tag.toLowerCase())
+                element.name.toLowerCase().includes(this.filter.tag.toLowerCase())
             ) {
               isFound = true;
             }
@@ -94,6 +90,23 @@ export default {
         });
       }
       return filteredExamples;
+    },
+  },
+  methods: {
+    toggleTheme(event) {
+      if (event.target.textContent === 'GO DARK') {
+        event.target.textContent = 'GO LIGHT';
+        document.querySelector('#prism').media = 'none';
+        document.querySelector('#prism-okaidia').media = '';
+        document.querySelector('html').classList.add('dark');
+        document.querySelector('#logo-image').setAttribute('src', 'SYNTAXDark.png');
+      } else {
+        event.target.textContent = 'GO DARK';
+        document.querySelector('#prism').media = '';
+        document.querySelector('#prism-okaidia').media = 'none';
+        document.querySelector('html').classList.remove('dark');
+        document.querySelector('#logo-image').setAttribute('src', 'SYNTAXLight.png');
+      }
     },
   },
 };
