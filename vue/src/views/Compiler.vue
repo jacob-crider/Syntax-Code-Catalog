@@ -116,7 +116,7 @@ textarea {
 
 .run-button {
   display: inline;
-  margin-left: 700px;
+  float: right;
 }
 
 .view {
