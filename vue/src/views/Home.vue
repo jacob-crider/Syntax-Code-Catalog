@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <h1 class="title">Code Snippets</h1>
     <example-list />
   </div>
 </template>
@@ -14,8 +13,5 @@ export default {
 };
 </script>
 
-<style scoped>
-.title {
-  text-align: center;
-}
+<style>
 </style>

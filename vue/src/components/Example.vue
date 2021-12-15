@@ -98,6 +98,7 @@ img.copy {
 }
 
 .copy-div button {
+  background-color: inherit;
   padding: 2px;
 }
 

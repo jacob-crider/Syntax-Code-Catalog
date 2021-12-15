@@ -56,10 +56,9 @@ export default {
   --violet: #e303ff;
 
   --bg-color: var(--platinum);
-  --card-color: var(--bdazzled-blue);
-  --form-color: var(--bdazzled-blue);
-  --navbar-color: var(--bdazzled-blue);
-  --button-color: var(--shadow-blue);
+  --card-color: var(--shadow-blue);
+  --form-color: var(--shadow-blue);
+  --button-color: var(--bdazzled-blue);
   --input-color: var(--platinum);
   --text-color: var(--platinum);
   --link-color: var(--rich-black-fogra-29);
@@ -68,6 +67,9 @@ export default {
 
 .dark {
   --bg-color: var(--rich-black-fogra-29);
+  --card-color: var(--bdazzled-blue);
+  --form-color: var(--bdazzled-blue);
+  --button-color: var(--oxford-blue);
   --link-color: var(--platinum);
 }
 
@@ -127,7 +129,7 @@ input {
 }
 
 #spacer {
-  margin-top: 50px;
+  margin-top: 90px;
 }
 
 #logo-image {
@@ -138,6 +140,7 @@ input {
   position: fixed;
   top: 0;
   left: 0;
+  padding: 16px;
   background-color: var(--bg-color);
   width: 100%;
 }
