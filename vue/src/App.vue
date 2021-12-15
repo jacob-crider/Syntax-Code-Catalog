@@ -14,7 +14,6 @@
         <router-link class="menu-item" v-if="isAdmin" v-bind:to="{ name: 'language' }">
           Edit Languages
         </router-link>
-        <a class="menu-item" @click.prevent="toggleTheme">Light</a>
       </div>
     </div>
     <div id="spacer" />
@@ -29,23 +28,6 @@ export default {
       return (this.$store.state.token !== '') && (this.$store.state.user.authorities[0].name === 'ROLE_ADMIN');
     },
   },
-  methods: {
-    toggleTheme(event) {
-      if (event.target.textContent === 'Light') {
-        event.target.textContent ='Dark';
-        document.querySelector('#prism').media = 'none';
-        document.querySelector('#prism-okaidia').media = '';
-        document.querySelector('html').classList.add('dark');
-        document.querySelector('#logo-image').setAttribute('src', 'SYNTAXDark.png');
-      } else {
-        event.target.textContent ='Light';
-        document.querySelector('#prism').media = '';
-        document.querySelector('#prism-okaidia').media = 'none';
-        document.querySelector('html').classList.remove('dark');
-        document.querySelector('#logo-image').setAttribute('src', 'SYNTAXLight.png');
-      }
-    }
-  }
 };
 </script>
 
