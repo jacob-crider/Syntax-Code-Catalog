@@ -26,7 +26,6 @@
             name="tag"
         />
       </div>
-      <button @click.prevent="toggleTheme">GO DARK</button>
     </div>
 
     <div class="container">
@@ -90,23 +89,6 @@ export default {
         });
       }
       return filteredExamples;
-    },
-  },
-  methods: {
-    toggleTheme(event) {
-      if (event.target.textContent === 'GO DARK') {
-        event.target.textContent = 'GO LIGHT';
-        document.querySelector('#prism').media = 'none';
-        document.querySelector('#prism-okaidia').media = '';
-        document.querySelector('html').classList.add('dark');
-        document.querySelector('#logo-image').setAttribute('src', 'SYNTAXDark.png');
-      } else {
-        event.target.textContent = 'GO DARK';
-        document.querySelector('#prism').media = '';
-        document.querySelector('#prism-okaidia').media = 'none';
-        document.querySelector('html').classList.remove('dark');
-        document.querySelector('#logo-image').setAttribute('src', 'SYNTAXLight.png');
-      }
     },
   },
 };

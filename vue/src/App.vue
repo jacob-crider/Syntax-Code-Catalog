@@ -14,6 +14,7 @@
         <router-link class="menu-item" v-if="isAdmin" v-bind:to="{ name: 'language' }">
           Edit Languages
         </router-link>
+        <button @click.prevent="toggleTheme">GO DARK</button>
       </div>
     </div>
     <div id="spacer" />
@@ -26,6 +27,23 @@ export default {
   computed: {
     isAdmin() {
       return (this.$store.state.token !== '') && (this.$store.state.user.authorities[0].name === 'ROLE_ADMIN');
+    },
+  },
+  methods: {
+    toggleTheme(event) {
+      if (event.target.textContent === 'GO DARK') {
+        event.target.textContent = 'GO LIGHT';
+        document.querySelector('#prism').media = 'none';
+        document.querySelector('#prism-okaidia').media = '';
+        document.querySelector('html').classList.add('dark');
+        document.querySelector('#logo-image').setAttribute('src', 'SYNTAXDark.png');
+      } else {
+        event.target.textContent = 'GO DARK';
+        document.querySelector('#prism').media = '';
+        document.querySelector('#prism-okaidia').media = 'none';
+        document.querySelector('html').classList.remove('dark');
+        document.querySelector('#logo-image').setAttribute('src', 'SYNTAXLight.png');
+      }
     },
   },
 };
@@ -140,5 +158,10 @@ input, select, textarea {
 .menu-item {
   padding: 0 16px;
   line-height: 3;
+}
+
+.menu button {
+  background-color: var(--bdazzled-blue);
+  margin: 0 8px;
 }
 </style>
