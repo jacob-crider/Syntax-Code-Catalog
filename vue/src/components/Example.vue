@@ -76,13 +76,13 @@ div.card {
   width: 54ch;
   margin: 32px 0;
   padding: 16px;
-  background-color: var(--card-dark);
+  background-color: var(--card-color);
   border-radius: 4px;
 }
 
 span.tag {
   padding: 0 4px;
-  border-right: 1px solid black;
+  border-right: 1px solid var(--text-color);
 }
 
 span.tag:last-child {

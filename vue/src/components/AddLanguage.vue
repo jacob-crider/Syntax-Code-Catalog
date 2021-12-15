@@ -46,7 +46,7 @@ form {
   margin: auto;
   padding: 10px;
   border-radius: 4px;
-  background-color: var(--form-dark);
+  background-color: var(--form-color);
   line-height: 1.5;
 }
 

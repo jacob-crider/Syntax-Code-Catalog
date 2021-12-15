@@ -114,7 +114,7 @@ div.filters {
 div.filter-form {
   width: fit-content;
   margin: auto;
-  background-color: var(--form-dark);
+  background-color: var(--form-color);
   border-radius: 4px;
   padding: 16px 8px;
 }
