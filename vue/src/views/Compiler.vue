@@ -2,8 +2,8 @@
   <div class="compiler">
     <h1>Syntax Compiler</h1>
     <div class="view">
-      <div v-if="!loading">
-      <textarea v-model="execution.script" cols="100" rows="30"></textarea>
+      <div class="loading" v-if="!loading">
+      <textarea v-model="execution.script"></textarea>
       <div>
         <label for="language">Language</label>
         <select id="language" v-model="execution.language">
@@ -48,8 +48,8 @@
         <p>memory: {{ compiledResponse.memory }}</p>
         <p>cpu time: {{ compiledResponse.cpuTime }}</p>
       </div>
-      <div class="loading" v-if="loading">
-        <iframe src="https://giphy.com/embed/11FuEnXyGsXFba" width="750" height="600" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+      <div class="gif" v-if="loading">
+        <iframe src="https://giphy.com/embed/11FuEnXyGsXFba" width="600" height="450" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
       </div>
      
     </div>
@@ -109,12 +109,27 @@ export default {
   border-radius: 4px;
 }
 
+textarea {
+  width: 100%;
+  height: 400px;
+}
+
 .run-button {
   display: inline;
   margin-left: 700px;
 }
 
 .view {
+  width: 90%;
+  margin: auto;
+}
+
+.loading {
+  width: 70%;
+  margin: auto;
+}
+
+.gif {
   width: 50%;
   margin: auto;
 }
