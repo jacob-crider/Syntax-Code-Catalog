@@ -30,17 +30,22 @@ export default {
     toggleTheme(event) {
       if (event.target.textContent === 'Light') {
         event.target.textContent ='Dark';
+        document.querySelector('#prism').media = 'none';
+        document.querySelector('#prism-okaidia').media = '';
+        document.querySelector('html').classList.add('dark');
       } else {
         event.target.textContent ='Light';
+        document.querySelector('#prism').media = '';
+        document.querySelector('#prism-okaidia').media = 'none';
+        document.querySelector('html').classList.remove('dark');
       }
-      document.querySelector('html').classList.toggle('dark');
     }
   }
 };
 </script>
 
 <style>
-html {
+:root {
   --rich-black-fogra-29: #0d1b2a;
   --oxford-blue: #1b263b;
   --bdazzled-blue: #415a77;
