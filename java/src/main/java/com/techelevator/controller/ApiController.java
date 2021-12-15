@@ -2,11 +2,10 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.CommentDAO;
 import com.techelevator.dao.ExampleDAO;
+import com.techelevator.dao.JDoodleDAO;
 import com.techelevator.dao.LanguageDAO;
 import com.techelevator.exception.BadRequestException;
-import com.techelevator.model.Comment;
-import com.techelevator.model.Example;
-import com.techelevator.model.Language;
+import com.techelevator.model.*;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -23,6 +22,7 @@ public class ApiController {
     private ExampleDAO exampleDAO;
     private LanguageDAO languageDAO;
     private CommentDAO commentDAO;
+    private JDoodleDAO jDoodleDao = new JDoodleDAO();
 
     public ApiController(ExampleDAO exampleDAO, LanguageDAO languageDAO, CommentDAO commentDAO) {
         this.exampleDAO = exampleDAO;
@@ -89,6 +89,15 @@ public class ApiController {
     public void addComment(@RequestBody Comment comment, Principal principal) throws BadRequestException {
         try {
             commentDAO.addComment(comment, principal);
+        } catch (DataAccessException e) {
+            throw new BadRequestException();
+        }
+    }
+
+    @RequestMapping(path = "/compiler", method = RequestMethod.POST)
+    public CompiledResponse addComment(@RequestBody Execution execution) throws BadRequestException {
+        try {
+            return jDoodleDao.compile(execution);
         } catch (DataAccessException e) {
             throw new BadRequestException();
         }

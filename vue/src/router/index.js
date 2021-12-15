@@ -7,6 +7,7 @@ import Register from '../views/Register.vue'
 import store from '../store/index'
 import AddExample from '../views/AddExample.vue'
 import LanguageView from '../views/LanguageView.vue'
+import Compiler from '../views/Compiler.vue'
 
 
 Vue.use(Router)
@@ -76,6 +77,15 @@ const router = new Router({
       meta: {
         requiresAuth: true,
         requiresAdmin: true
+      }
+    },
+    {
+      path: '/compiler',
+      name: 'compiler',
+      component: Compiler,
+      meta: {
+        requiresAuth: true,
+        requiresAdmin: false
       }
     }
   ]
