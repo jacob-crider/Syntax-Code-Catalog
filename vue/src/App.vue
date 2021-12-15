@@ -8,6 +8,9 @@
         <router-link class="menu-item" v-bind:to="{ name: 'logout' }" v-if="$store.state.token !== ''">
           Logout
         </router-link>
+        <router-link class="menu-item" v-bind:to="{ name: 'compiler' }">
+          Compiler
+        </router-link>
         <router-link class="menu-item" v-if="isAdmin" v-bind:to="{ name: 'language' }">
           Edit Languages
         </router-link>
