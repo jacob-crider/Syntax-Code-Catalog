@@ -100,12 +100,6 @@ export default {
 </script>
 
 <style scoped>
-
-h1 {
-  text-align: center;
-  color: var(--text-color);
-}
-
 div.register-form {
   width: 480px;
   background-color: var(--form-color);
