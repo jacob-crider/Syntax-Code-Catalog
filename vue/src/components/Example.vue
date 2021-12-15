@@ -79,7 +79,7 @@ div.card {
 
 span.tag {
   padding: 0 4px;
-  border-right: 1px solid black;
+  border-right: 1px solid var(--text-dark);
 }
 
 span.tag:last-child {
