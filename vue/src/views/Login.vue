@@ -107,4 +107,8 @@ div.submit-form {
 label {
   padding-right: 4px;
 }
+
+a {
+  color: var(--platinum);
+}
 </style>

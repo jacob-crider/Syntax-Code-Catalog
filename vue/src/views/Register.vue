@@ -10,32 +10,32 @@
         <div class="form-inputs">
           <label for="username" class="sr-only">Username</label>
           <input
-            type="text"
-            id="username"
-            class="form-control"
-            placeholder="Username"
-            v-model="user.username"
-            required
-            autofocus
+              type="text"
+              id="username"
+              class="form-control"
+              placeholder="Username"
+              v-model="user.username"
+              required
+              autofocus
           />
         </div>
         <div class="form-inputs">
           <label for="password" class="sr-only">Password</label>
           <input
-            type="password"
-            id="password"
-            class="form-control"
-            placeholder="Password"
-            v-model="user.password"
-            required
+              type="password"
+              id="password"
+              class="form-control"
+              placeholder="Password"
+              v-model="user.password"
+              required
           />
           <input
-            type="password"
-            id="confirmPassword"
-            class="form-control"
-            placeholder="Confirm Password"
-            v-model="user.confirmPassword"
-            required
+              type="password"
+              id="confirmPassword"
+              class="form-control"
+              placeholder="Confirm Password"
+              v-model="user.confirmPassword"
+              required
           />
         </div>
         <router-link :to="{ name: 'login' }">Have an account?</router-link>
@@ -50,50 +50,47 @@
 </template>
 
 <script>
-import authService from "../services/AuthService";
+import authService from '../services/AuthService';
 
 export default {
-  name: "register",
+  name: 'register',
   data() {
     return {
       user: {
-        username: "",
-        password: "",
-        confirmPassword: "",
-        role: "user",
+        username: '',
+        password: '',
+        confirmPassword: '',
+        role: 'user',
       },
       registrationErrors: false,
-      registrationErrorMsg: "There were problems registering this user.",
+      registrationErrorMsg: 'There were problems registering this user.',
     };
   },
   methods: {
     register() {
-      if (this.user.password != this.user.confirmPassword) {
+      if (this.user.password !== this.user.confirmPassword) {
         this.registrationErrors = true;
-        this.registrationErrorMsg = "Password & Confirm Password do not match.";
+        this.registrationErrorMsg = 'Password & Confirm Password do not match.';
       } else {
-        authService
-          .register(this.user)
-          .then((response) => {
-            if (response.status == 201) {
-              this.$router.push({
-                path: "/login",
-                query: { registration: "success" },
-              });
-            }
-          })
-          .catch((error) => {
-            const response = error.response;
-            this.registrationErrors = true;
-            if (response.status === 400) {
-              this.registrationErrorMsg = "Bad Request: Validation Errors";
-            }
-          });
+        authService.register(this.user).then((response) => {
+          if (response.status === 201) {
+            this.$router.push({
+              path: '/login',
+              query: {registration: 'success'},
+            });
+          }
+        }).catch((error) => {
+          const response = error.response;
+          this.registrationErrors = true;
+          if (response.status === 400) {
+            this.registrationErrorMsg = 'Bad Request: Validation Errors';
+          }
+        });
       }
     },
     clearErrors() {
       this.registrationErrors = false;
-      this.registrationErrorMsg = "There were problems registering this user.";
+      this.registrationErrorMsg = 'There were problems registering this user.';
     },
   },
 };
@@ -127,4 +124,7 @@ label {
   margin-left: 80px;
 }
 
+a {
+  color: var(--platinum);
+}
 </style>

@@ -8,14 +8,14 @@
         <router-link class="menu-item" v-bind:to="{ name: 'home' }" v-if="$store.state.token !== ''">
           Home
         </router-link>
-        <router-link class="menu-item" v-bind:to="{ name: 'logout' }" v-if="$store.state.token !== ''">
-          Logout
-        </router-link>
         <router-link class="menu-item" v-bind:to="{ name: 'compiler' }" v-if="$store.state.token !== ''">
           Compiler
         </router-link>
         <router-link class="menu-item" v-if="isAdmin" v-bind:to="{ name: 'language' }">
           Edit Languages
+        </router-link>
+        <router-link class="menu-item" v-bind:to="{ name: 'logout' }" v-if="$store.state.token !== ''">
+          Logout
         </router-link>
         <button @click.prevent="toggleTheme">GO DARK</button>
       </div>
