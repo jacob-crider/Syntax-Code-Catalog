@@ -3,13 +3,13 @@
     <p class="tags">
       Tags:
       <span class="tag" v-for="tag in example.tagList" v-bind:key="tag.id">{{
-        tag.name
-      }}</span>
+          tag.name
+        }}</span>
     </p>
     <h2>{{ example.title }}</h2>
-     <div class="copy-div">
+    <div class="copy-div">
       <button @click.prevent="copyToClipBoard(example.snippet)">
-        <img class="copy" src="copy.png" alt="copy to clipboard" title="Copy To Clipboard"/>
+        <img class="copy" src="copy.png" alt="copy to clipboard" title="Copy To Clipboard" />
       </button>
     </div>
     <p>{{ example.languageType }}</p>
@@ -17,37 +17,37 @@
     <code-highlight>{{ example.snippet }}</code-highlight>
     <img class="diagram" v-if="example.imageUrl !== null" :src="example.imageUrl" alt="snippet image" />
     <p>{{ example.description }}</p>
-    <button @click.prevent="toggle = !toggle">EMAIL</button>
+    <button id="email-button" @click.prevent="toggle = !toggle">EMAIL</button>
     <email-snippet v-if="toggle" v-bind:example="example"></email-snippet>
     <div>
       <button id="edit-button" @click.prevent="showForm = !showForm" v-if="isAdmin">EDIT</button>
     </div>
 
     <edit-example-form v-if="showForm" v-bind:example="example" />
-    <comment-list v-bind:example="example"/>
+    <comment-list v-bind:example="example" />
   </div>
 </template>
 
 <script>
-import { component as CodeHighlight } from 'vue-code-highlight';
-import EditExampleForm from "./EditExampleForm.vue";
-import EmailSnippet from "./EmailSnippet.vue";
-import CommentList from './CommentList.vue'
+import {component as CodeHighlight} from 'vue-code-highlight';
+import EditExampleForm from './EditExampleForm.vue';
+import EmailSnippet from './EmailSnippet.vue';
+import CommentList from './CommentList.vue';
 
 export default {
-  name: "example",
-  props: ["example"],
+  name: 'example',
+  props: ['example'],
   components: {
     CodeHighlight,
     EditExampleForm,
     EmailSnippet,
-    CommentList
+    CommentList,
   },
   computed: {
     isAdmin() {
       return (
-        this.$store.state.token !== "" &&
-        this.$store.state.user.authorities[0].name === "ROLE_ADMIN"
+          this.$store.state.token !== '' &&
+          this.$store.state.user.authorities[0].name === 'ROLE_ADMIN'
       );
     },
   },
@@ -55,7 +55,7 @@ export default {
     copyToClipBoard(snippet) {
       navigator.clipboard.writeText(snippet);
       alert('Copied Snippet');
-    }
+    },
   },
   data() {
     return {
@@ -114,7 +114,7 @@ img.diagram {
   margin: 16px 0;
 }
 
-#edit-button {
+button {
   margin: 16px 0;
 }
 </style>

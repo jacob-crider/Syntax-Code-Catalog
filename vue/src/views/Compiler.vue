@@ -2,6 +2,7 @@
   <div class="compiler">
     <h1>Syntax Compiler</h1>
     <div class="view">
+      <div v-if="!loading">
       <textarea v-model="execution.script" cols="100" rows="30"></textarea>
       <div>
         <label for="language">Language</label>
@@ -43,9 +44,14 @@
         <button v-bind:disabled="!execution.language" class="run-button" @click="compile(execution)">RUN</button>
       </div>
 
-      <p>output: {{ compiledResponse.output }}</p>
-      <p>memory: {{ compiledResponse.memory }}</p>
-      <p>cpu time: {{ compiledResponse.cpuTime }}</p>
+        <p>output: {{ compiledResponse.output }}</p>
+        <p>memory: {{ compiledResponse.memory }}</p>
+        <p>cpu time: {{ compiledResponse.cpuTime }}</p>
+      </div>
+      <div class="loading" v-if="loading">
+        <iframe src="https://giphy.com/embed/11FuEnXyGsXFba" width="750" height="600" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+      </div>
+     
     </div>
   </div>
 </template>
@@ -71,10 +77,12 @@ export default {
         memory: "",
         cpuTime: "",
       },
+      loading: false
     };
   },
   methods: {
     compile(execution) {
+      this.loading = true;
       jDoodleService
         .compile(execution)
         .then((response) => {
@@ -82,6 +90,7 @@ export default {
           this.compiledResponse.statusCode = response.data.statusCode;
           this.compiledResponse.memory = response.data.memory;
           this.compiledResponse.cpuTime = response.data.cpuTime;
+          this.loading = false;
         })
         .catch((error) => {
           console.error(error);
@@ -102,11 +111,12 @@ export default {
 
 .run-button {
   display: inline;
-  margin-left: 490px;
+  margin-left: 700px;
 }
 
 .view {
-  width: 80%;
+  width: 50%;
   margin: auto;
 }
+
 </style>

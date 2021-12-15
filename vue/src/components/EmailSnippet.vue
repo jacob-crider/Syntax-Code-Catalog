@@ -2,7 +2,7 @@
   <form ref="form" @submit.prevent="sendEmail">
     <label>Sender Name</label>
     <input type="text" name="sender_name" v-model="sender_name">
-     <label>Sender Email</label>
+    <label>Sender Email</label>
     <input type="email" name="sender_email" v-model="sender_email">
     <label>Receiver Name</label>
     <input type="text" name="receiver_name" v-model="receiver_name">
@@ -14,10 +14,10 @@
 </template>
 
 <script>
-import emailjs from "emailjs-com";
+import emailjs from 'emailjs-com';
 
 export default {
-  name: "emailsnippet",
+  name: 'emailsnippet',
   data() {
     return {
       receiver_email: '',
@@ -25,22 +25,22 @@ export default {
       sender_email: '',
       receiver_name: '',
       message: `${this.example.title} \n ${this.example.languageType} \n ${this.example.snippet}`,
-      displayMessage: false
-    }
+      displayMessage: false,
+    };
   },
   methods: {
     sendEmail() {
-      emailjs.sendForm('service_ntt3qtv', 'template_kiux2ir', this.$refs.form, 'user_SGnUIPQ7CqPCd1wMp8ZWV')
-        .then((result) => {
-          console.log(result.status)
+      emailjs.sendForm('service_ntt3qtv', 'template_kiux2ir', this.$refs.form, 'user_SGnUIPQ7CqPCd1wMp8ZWV').
+          then((result) => {
+            console.log(result.status);
             alert('SUCCESS!');
-        }, (error) => {
-          console.log(error.status)
+          }, (error) => {
+            console.log(error.status);
             alert('FAILED...');
-        });
-    }
+          });
+    },
   },
-  props: ['example']
+  props: ['example'],
 };
 </script>
 
@@ -70,5 +70,9 @@ textarea {
   margin-top: 6px;
   margin-bottom: 16px;
   resize: vertical;
+}
+
+button {
+  margin: 16px 0;
 }
 </style>
