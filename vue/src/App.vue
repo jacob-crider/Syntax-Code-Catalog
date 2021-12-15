@@ -108,8 +108,11 @@ button:hover {
 
 input {
   line-height: 2;
+}
+
+input, select, textarea {
+  border: none;
   border-radius: 4px;
-  border: 1px solid #cccccc;
   background-color: var(--input-color);
 }
 
