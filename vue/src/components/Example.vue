@@ -30,7 +30,6 @@
 
 <script>
 import { component as CodeHighlight } from 'vue-code-highlight';
-import 'vue-code-highlight/themes/prism-okaidia.css';
 import EditExampleForm from "./EditExampleForm.vue";
 import EmailSnippet from "./EmailSnippet.vue";
 import CommentList from './CommentList.vue'

@@ -2,7 +2,7 @@
   <div id="app">
     <div class="nav-bar">
       <router-link v-bind:to="{ name: 'home' }">
-        <img id="logo-image" src="SyntaxWithColors.png" alt="Logo">
+        <img id="logo-image" src="SYNTAXLight.png" alt="Logo">
       </router-link>
       <div class="menu">
         <router-link class="menu-item" v-bind:to="{ name: 'logout' }" v-if="$store.state.token !== ''">
@@ -30,17 +30,24 @@ export default {
     toggleTheme(event) {
       if (event.target.textContent === 'Light') {
         event.target.textContent ='Dark';
+        document.querySelector('#prism').media = 'none';
+        document.querySelector('#prism-okaidia').media = '';
+        document.querySelector('html').classList.add('dark');
+        document.querySelector('#logo-image').setAttribute('src', 'SYNTAXDark.png');
       } else {
         event.target.textContent ='Light';
+        document.querySelector('#prism').media = '';
+        document.querySelector('#prism-okaidia').media = 'none';
+        document.querySelector('html').classList.remove('dark');
+        document.querySelector('#logo-image').setAttribute('src', 'SYNTAXLight.png');
       }
-      document.querySelector('html').classList.toggle('dark');
     }
   }
 };
 </script>
 
 <style>
-html {
+:root {
   --rich-black-fogra-29: #0d1b2a;
   --oxford-blue: #1b263b;
   --bdazzled-blue: #415a77;
@@ -81,9 +88,12 @@ body {
 
 h1, h2 {
   color: var(--accent);
-  text-shadow: 1px 1px 2px black;
-  font-weight: normal;
   text-align: center;
+}
+
+h2 {
+  text-shadow: 0 0 2px black;
+  font-weight: normal;
 }
 
 a {
@@ -117,7 +127,7 @@ input {
 }
 
 #spacer {
-  margin-top: 64px;
+  margin-top: 50px;
 }
 
 #logo-image {
