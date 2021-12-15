@@ -52,6 +52,10 @@ html {
   color: var(--text-dark);
 }
 
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 body {
   margin: 0;
 }
@@ -62,17 +66,13 @@ h1, h2 {
   text-align: center;
 }
 
-*, *:before, *:after {
-  box-sizing: inherit;
-}
-
 a {
   color: var(--text-dark);
   text-decoration: none;
 }
 
 a:hover {
-  color: var(--bg-dark);
+  color: violet;
   text-decoration: underline;
 }
 
@@ -108,7 +108,7 @@ input {
   position: fixed;
   top: 0;
   left: 0;
-  background-color: var(--card-dark);
+  background-color: var(--bg-dark);
   width: 100%;
 }
 
