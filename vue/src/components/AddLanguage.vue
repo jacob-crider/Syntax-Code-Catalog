@@ -1,6 +1,7 @@
 <template>
   <div>
     <form>
+      <h2>Add Language</h2>
       <div>
         <label for="language-type">Language</label>
         <input id="language-type" type="text" v-model="language.type" />

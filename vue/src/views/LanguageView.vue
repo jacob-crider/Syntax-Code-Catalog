@@ -1,9 +1,8 @@
 <template>
   <div class="language-view">
     <h1>Language Editor</h1>
-    <h2>Add Language</h2>
     <add-language />
-    <h2>Edit Languages</h2>
+    <div class="spacer" />
     <language-list />
   </div>
 </template>
@@ -24,5 +23,9 @@ export default {
 <style scoped>
 div.language-view {
   text-align: center;
+}
+
+div.spacer {
+  margin: 32px;
 }
 </style>

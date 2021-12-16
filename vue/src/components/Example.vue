@@ -15,7 +15,8 @@
     <p>{{ example.languageType }}</p>
 
     <code-highlight>{{ example.snippet }}</code-highlight>
-    <img class="diagram" v-if="example.imageUrl !== null && example.imageUrl !== ''" :src="example.imageUrl" alt="snippet image" />
+    <img class="diagram" v-if="example.imageUrl !== null && example.imageUrl !== ''" :src="example.imageUrl"
+        alt="snippet image" />
     <p>{{ example.description }}</p>
     <button id="email-button" @click.prevent="toggle = !toggle">EMAIL</button>
     <email-snippet v-if="toggle" v-bind:example="example"></email-snippet>

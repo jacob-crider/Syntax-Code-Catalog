@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h2>Edit Languages</h2>
     <table>
       <thead>
       <tr>
@@ -44,13 +45,16 @@ export default {
 </script>
 
 <style scoped>
+div {
+  max-width: 480px;
+  margin: auto;
+  padding: 32px;
+  background-color: var(--form-color);
+  border-radius: 4px;
+}
+
 table {
   table-layout: auto;
   width: 100%;
-  max-width: 480px;
-  margin: auto;
-  padding: 10px;
-  background-color: var(--form-color);
-  border-radius: 4px;
 }
 </style>
