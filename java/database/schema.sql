@@ -117,7 +117,7 @@ INSERT INTO examples (example_id, title, snippet, language_id, description, imag
 }', 1, 'Loops can execute a block of code a number of times. Loops are handy, if you want to run the same code over and over again, each time with a different value.', 'https://res.cloudinary.com/syntax-image/image/upload/v1639498639/hq2wc45yzdl9b6uy11sf.png');
 INSERT INTO examples (example_id, title, snippet, language_id, description, image_url) VALUES (DEFAULT, 'Array Initialization', 'const array = [1, 2, 3, 4];', 1, 'Arrays are list-like objects whose prototype has methods to perform traversal and mutation operations. Neither the length of a JavaScript array nor the types of its elements are fixed.', 'https://res.cloudinary.com/syntax-image/image/upload/v1639498520/au5kv9c60vu12z6umhod.jpg');
 INSERT INTO examples (example_id, title, snippet, language_id, description) VALUES (DEFAULT, 'Hello World', 'System.out.println("hello world");', 2, 'In Java, System.out.println() is a statement which prints the argument passed to it. The println() method display results on the monitor. Usually, a method is invoked by objectname.methodname().');
-INSERT INTO examples (example_id, title, snippet, language_id, description) VALUES (DEFAULT, 'if Block', 'if (str.equals("bird") {
+INSERT INTO examples (example_id, title, snippet, language_id, description) VALUES (DEFAULT, 'if Block', 'if (str.equals("bird")) {
     bird.tweet();
 }', 2, 'Use the if statement to specify a block of Java code to be executed if a condition is true.');
 INSERT INTO examples (example_id, title, snippet, language_id, description) VALUES (DEFAULT, 'for each Loop', 'for(int num : array) {
@@ -136,6 +136,28 @@ INSERT INTO example_tag (example_id, tag_id) VALUES (5, 4);
 INSERT INTO example_tag (example_id, tag_id) VALUES (6, 2);
 INSERT INTO example_tag (example_id, tag_id) VALUES (7, 1);
 INSERT INTO example_tag (example_id, tag_id) VALUES (8, 4);
-INSERT INTO example_tag (example_id, tag_id) VALUES (9, 4);
+INSERT INTO example_tag (example_id, tag_id) VALUES (9, 4);\
+
+INSERT INTO users (user_id, username, password_hash, role) VALUES (DEFAULT, Linus Torvalds, $2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC, ROLE_USER);
+INSERT INTO users (user_id, username, password_hash, role) VALUES (DEFAULT, Ada Lovelace, $2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC, ROLE_USER);
+INSERT INTO users (user_id, username, password_hash, role) VALUES (DEFAULT, Alan Turing, $2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC, ROLE_USER);
+INSERT INTO users (user_id, username, password_hash, role) VALUES (DEFAULT, Larry Page, $2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC, ROLE_USER);
+
+INSERT INTO comments (id, description, example_comment_id, username) VALUES (DEFAULT, 'Hello Syntax!', 1,'Linus Torvalds');
+INSERT INTO comments (id, description, example_comment_id, username) VALUES (DEFAULT, 'Hey Linus, how is the Kernal?', 1, 'Ada Lovelace');
+INSERT INTO comments (id, description, example_comment_id, username) VALUES (DEFAULT, 'This was my first program!', 1, 'Alan Turing');
+
+INSERT INTO comments (id, description, example_comment_id, username) VALUES (DEFAULT, 'IF I had a dollar... lol', 2,'Linus Torvalds');
+INSERT INTO comments (id, description, example_comment_id, username) VALUES (DEFAULT, 'Ha! That was a good one, Linus!', 2, 'Ada Lovelace');
+INSERT INTO comments (id, description, example_comment_id, username) VALUES (DEFAULT, 'OMG very clever, kudos to you Linus. Clever indeed!', 2, 'Alan Turing');
+
+INSERT INTO comments (id, description, example_comment_id, username) VALUES (DEFAULT, 'Oh, I know what these are FOR', 3,'Larry Page');
+INSERT INTO comments (id, description, example_comment_id, username) VALUES (DEFAULT, 'You are such a nerd, Larry.', 3, 'Ada Lovelace');
+
+INSERT INTO comments (id, description, example_comment_id, username) VALUES (DEFAULT, 'You will be surprised at what you can do with a simple array!', 4,'Larry Page');
+
+INSERT INTO comments (id, description, example_comment_id, username) VALUES (DEFAULT, 'A little bird told me...', 6,'Linus Torvalds');
+
 
 COMMIT TRANSACTION;
+
