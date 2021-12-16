@@ -48,7 +48,7 @@
         <button @click.prevent="uploadImage">Upload Image</button>
       </div>
 
-      <button @click.prevent="updateExample">Submit</button>
+      <button id="submit-button" @click.prevent="updateExample">Submit</button>
     </form>
   </div>
 </template>
@@ -151,7 +151,7 @@ textarea {
   margin: 16px 0;
 }
 
-.upload-button {
+.upload-button, #submit-button {
   margin: 16px 0;
 }
 </style>

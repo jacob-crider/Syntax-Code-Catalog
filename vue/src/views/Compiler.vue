@@ -53,7 +53,6 @@
         <iframe src="https://giphy.com/embed/11FuEnXyGsXFba" width="600" height="450" frameBorder="0"
             class="giphy-embed" allowFullScreen></iframe>
       </div>
-
     </div>
   </div>
 </template>
@@ -99,7 +98,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 textarea {
   width: 100%;
   height: 400px;

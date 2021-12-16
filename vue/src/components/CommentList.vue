@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click.prevent="addComment">Add Comment</button>
+    <button id="add-comment" @click.prevent="addComment">ADD COMMENT</button>
     <input type="text" v-model="comment.description" />
     <div v-if="comments !== []">
       <comment
@@ -54,4 +54,7 @@ export default {
 </script>
 
 <style>
+button#add-comment {
+  margin-right: 8px;
+}
 </style>
