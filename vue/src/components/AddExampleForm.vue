@@ -185,11 +185,6 @@ span {
   padding-right: 4px;
 }
 
-select {
-  border-radius: 4px;
-  padding: 6px;
-}
-
 .submit-button button {
   display: block;
   margin: auto;

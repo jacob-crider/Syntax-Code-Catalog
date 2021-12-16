@@ -141,6 +141,10 @@ input, select, textarea {
   background-color: var(--input-color);
 }
 
+select {
+  padding: 6px;
+}
+
 #spacer {
   margin-top: 90px;
 }

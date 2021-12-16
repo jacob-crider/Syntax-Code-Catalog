@@ -115,7 +115,7 @@ img.diagram {
   margin: 16px 0;
 }
 
-button {
+#email-button, #edit-button {
   margin: 16px 0;
 }
 </style>
