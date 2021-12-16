@@ -136,12 +136,12 @@ INSERT INTO example_tag (example_id, tag_id) VALUES (5, 4);
 INSERT INTO example_tag (example_id, tag_id) VALUES (6, 2);
 INSERT INTO example_tag (example_id, tag_id) VALUES (7, 1);
 INSERT INTO example_tag (example_id, tag_id) VALUES (8, 4);
-INSERT INTO example_tag (example_id, tag_id) VALUES (9, 4);\
+INSERT INTO example_tag (example_id, tag_id) VALUES (9, 4);
 
-INSERT INTO users (user_id, username, password_hash, role) VALUES (DEFAULT, Linus Torvalds, $2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC, ROLE_USER);
-INSERT INTO users (user_id, username, password_hash, role) VALUES (DEFAULT, Ada Lovelace, $2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC, ROLE_USER);
-INSERT INTO users (user_id, username, password_hash, role) VALUES (DEFAULT, Alan Turing, $2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC, ROLE_USER);
-INSERT INTO users (user_id, username, password_hash, role) VALUES (DEFAULT, Larry Page, $2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC, ROLE_USER);
+INSERT INTO users (user_id, username, password_hash, role) VALUES (DEFAULT, 'Linus Torvalds', '$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC', 'ROLE_USER');
+INSERT INTO users (user_id, username, password_hash, role) VALUES (DEFAULT, 'Ada Lovelace', '$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC', 'ROLE_USER');
+INSERT INTO users (user_id, username, password_hash, role) VALUES (DEFAULT, 'Alan Turing', '$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC', 'ROLE_USER');
+INSERT INTO users (user_id, username, password_hash, role) VALUES (DEFAULT, 'Larry Page', '$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC', 'ROLE_USER');
 
 INSERT INTO comments (id, description, example_comment_id, username) VALUES (DEFAULT, 'Hello Syntax!', 1,'Linus Torvalds');
 INSERT INTO comments (id, description, example_comment_id, username) VALUES (DEFAULT, 'Hey Linus, how is the Kernal?', 1, 'Ada Lovelace');
