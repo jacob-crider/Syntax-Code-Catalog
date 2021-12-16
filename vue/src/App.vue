@@ -60,6 +60,7 @@ export default {
   --shadow-blue: #778da9;
   --platinum: #e0e1dd;
   --violet: #e303ff;
+  --dark-violet: #af00c5;
 
   --bg-color: var(--platinum);
   --card-color: var(--shadow-blue);
@@ -68,7 +69,7 @@ export default {
   --input-color: var(--platinum);
   --text-color: var(--platinum);
   --link-color: var(--rich-black-fogra-29);
-  --accent: var(--violet);
+  --accent: var(--oxford-blue);
 }
 
 .dark {
@@ -77,6 +78,7 @@ export default {
   --form-color: var(--bdazzled-blue);
   --button-color: var(--oxford-blue);
   --link-color: var(--platinum);
+  --accent: var(--violet);
 }
 
 html {
@@ -100,8 +102,10 @@ h1, h2 {
 }
 
 h2 {
-  text-shadow: 0 0 2px black;
+  font-size: 1.8rem;
+  text-shadow: 1px 1px 0 black;
   font-weight: normal;
+  letter-spacing: 1px;
 }
 
 a {
