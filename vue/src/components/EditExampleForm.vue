@@ -38,7 +38,7 @@
       <div>
         <img
             class="snippet-thumb"
-            v-if="editedExample.imageUrl !== null"
+            v-if="editedExample.imageUrl"
             :src="editedExample.imageUrl"
             alt="Upload an image..."
         />

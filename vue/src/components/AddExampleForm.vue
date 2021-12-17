@@ -56,7 +56,7 @@
 
       <div class="snippet-input">
         <img
-          v-if="example.imageUrl !== ''"
+          v-if="example.imageUrl"
           :src="example.imageUrl"
           alt="Upload an image..."
         />
