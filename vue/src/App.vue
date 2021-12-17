@@ -17,7 +17,7 @@
         <router-link class="menu-item" v-bind:to="{ name: 'logout' }" v-if="$store.state.token !== ''">
           Logout
         </router-link>
-        <button @click.prevent="toggleTheme">GO DARK</button>
+        <button id="theme-toggle" @click.prevent="toggleTheme">GO DARK</button>
       </div>
     </div>
     <div id="spacer" />
@@ -27,27 +27,57 @@
 
 <script>
 export default {
+  data() {
+    return {
+      currentTheme: '',
+    };
+  },
   computed: {
     isAdmin() {
       return (this.$store.state.token !== '') && (this.$store.state.user.authorities[0].name === 'ROLE_ADMIN');
     },
   },
   methods: {
-    toggleTheme(event) {
-      if (event.target.textContent === 'GO DARK') {
-        event.target.textContent = 'GO LIGHT';
-        document.querySelector('#prism').media = 'none';
-        document.querySelector('#prism-okaidia').media = '';
-        document.querySelector('html').classList.add('dark');
-        document.querySelector('#logo-image').setAttribute('src', 'SYNTAXDark.png');
+    toggleTheme() {
+      if (this.currentTheme === 'light') {
+        this.setDarkTheme();
       } else {
-        event.target.textContent = 'GO DARK';
-        document.querySelector('#prism').media = '';
-        document.querySelector('#prism-okaidia').media = 'none';
-        document.querySelector('html').classList.remove('dark');
-        document.querySelector('#logo-image').setAttribute('src', 'SYNTAXLight.png');
+        this.setLightTheme();
       }
     },
+    setDarkTheme() {
+      document.querySelector('#theme-toggle').textContent = 'GO LIGHT';
+      document.querySelector('#prism').media = 'none';
+      document.querySelector('#prism-okaidia').media = '';
+      document.querySelector('html').classList.add('dark');
+      document.querySelector('#logo-image').setAttribute('src', 'SYNTAXDark.png');
+      localStorage.setItem('current_theme', 'dark');
+      this.currentTheme = 'dark';
+    },
+    setLightTheme() {
+      document.querySelector('#theme-toggle').textContent = 'GO DARK';
+      document.querySelector('#prism').media = '';
+      document.querySelector('#prism-okaidia').media = 'none';
+      document.querySelector('html').classList.remove('dark');
+      document.querySelector('#logo-image').setAttribute('src', 'SYNTAXLight.png');
+      localStorage.setItem('current_theme', 'light');
+      this.currentTheme = 'light';
+    },
+  },
+  created() {
+    if (!localStorage.getItem('current_theme')) {
+      localStorage.setItem('current_theme', 'light');
+      this.currentTheme = 'light';
+    } else {
+      this.currentTheme = localStorage.getItem('current_theme');
+    }
+  },
+  mounted() {
+    if (this.currentTheme === 'light') {
+      this.setLightTheme();
+    } else {
+      this.setDarkTheme();
+    }
   },
 };
 </script>
